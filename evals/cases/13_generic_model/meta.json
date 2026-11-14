@@ -1,0 +1,7 @@
+{
+  "id": "13_generic_model",
+  "patterns": [
+    "pydantic.generics.GenericModel -> BaseModel + Generic"
+  ],
+  "difficulty": "hard"
+}

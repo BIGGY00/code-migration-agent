@@ -1,0 +1,8 @@
+{
+  "id": "09_custom_root",
+  "patterns": [
+    "__root__ -> RootModel",
+    ".__root__ -> .root"
+  ],
+  "difficulty": "hard"
+}

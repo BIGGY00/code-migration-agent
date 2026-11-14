@@ -1,0 +1,7 @@
+{
+  "id": "07_optional_implicit_default",
+  "patterns": [
+    "Optional[X] without default is required in v2"
+  ],
+  "difficulty": "medium"
+}

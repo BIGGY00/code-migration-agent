@@ -1,0 +1,8 @@
+{
+  "id": "11_copy_schema",
+  "patterns": [
+    ".copy(update=) -> .model_copy(update=)",
+    ".schema() -> .model_json_schema()"
+  ],
+  "difficulty": "easy"
+}

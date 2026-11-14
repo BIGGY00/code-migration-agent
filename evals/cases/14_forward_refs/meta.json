@@ -1,0 +1,7 @@
+{
+  "id": "14_forward_refs",
+  "patterns": [
+    "update_forward_refs -> model_rebuild"
+  ],
+  "difficulty": "easy"
+}

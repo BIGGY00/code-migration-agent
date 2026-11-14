@@ -1,0 +1,7 @@
+{
+  "id": "03_validator",
+  "patterns": [
+    "@validator -> @field_validator"
+  ],
+  "difficulty": "easy"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "05_root_validator",
+  "patterns": [
+    "@root_validator -> @model_validator(mode='after')"
+  ],
+  "difficulty": "medium"
+}

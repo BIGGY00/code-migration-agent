@@ -1,0 +1,7 @@
+{
+  "id": "10_parse_obj_as",
+  "patterns": [
+    "parse_obj_as -> TypeAdapter.validate_python"
+  ],
+  "difficulty": "medium"
+}

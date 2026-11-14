@@ -1,0 +1,8 @@
+{
+  "id": "12_extra_forbid_frozen",
+  "patterns": [
+    "Extra.forbid -> extra='forbid'",
+    "allow_mutation=False -> frozen=True"
+  ],
+  "difficulty": "medium"
+}

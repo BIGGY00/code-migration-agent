@@ -1,0 +1,8 @@
+{
+  "id": "02_parse_obj_raw",
+  "patterns": [
+    "BaseModel.parse_obj",
+    "BaseModel.parse_raw"
+  ],
+  "difficulty": "easy"
+}

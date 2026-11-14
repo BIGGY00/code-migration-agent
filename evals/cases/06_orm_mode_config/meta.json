@@ -1,0 +1,10 @@
+{
+  "id": "06_orm_mode_config",
+  "patterns": [
+    "class Config -> model_config",
+    "orm_mode -> from_attributes",
+    "allow_population_by_field_name -> populate_by_name",
+    "from_orm -> model_validate"
+  ],
+  "difficulty": "medium"
+}

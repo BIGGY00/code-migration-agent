@@ -1,0 +1,7 @@
+{
+  "id": "04_validator_pre_always",
+  "patterns": [
+    "@validator(pre=True, always=True) -> field_validator(mode='before') + validate_default"
+  ],
+  "difficulty": "medium"
+}

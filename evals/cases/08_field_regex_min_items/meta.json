@@ -1,0 +1,8 @@
+{
+  "id": "08_field_regex_min_items",
+  "patterns": [
+    "Field(regex=) -> Field(pattern=)",
+    "min_items -> min_length"
+  ],
+  "difficulty": "easy"
+}
