@@ -3,5 +3,8 @@
   "patterns": [
     "@validator -> @field_validator"
   ],
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "guide_sections": [
+    "`@validator` and `@root_validator` are deprecated"
+  ]
 }

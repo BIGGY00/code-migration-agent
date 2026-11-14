@@ -4,5 +4,8 @@
     "Field(regex=) -> Field(pattern=)",
     "min_items -> min_length"
   ],
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "guide_sections": [
+    "Changes to `pydantic.Field`"
+  ]
 }

@@ -4,5 +4,8 @@
     "Extra.forbid -> extra='forbid'",
     "allow_mutation=False -> frozen=True"
   ],
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "guide_sections": [
+    "Changes to config"
+  ]
 }

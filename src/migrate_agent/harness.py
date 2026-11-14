@@ -34,6 +34,7 @@ class Case:
     dir: Path
     patterns: list[str] = field(default_factory=list)
     difficulty: str = "unknown"
+    guide_sections: list[str] = field(default_factory=list)  # expected migration-guide headings
 
     @property
     def before(self) -> Path:
@@ -59,7 +60,15 @@ def load_cases(cases_dir: Path = CASES_DIR) -> list[Case]:
     cases = []
     for d in sorted(p for p in cases_dir.iterdir() if p.is_dir()):
         meta = json.loads((d / "meta.json").read_text())
-        cases.append(Case(id=meta["id"], dir=d, patterns=meta["patterns"], difficulty=meta["difficulty"]))
+        cases.append(
+            Case(
+                id=meta["id"],
+                dir=d,
+                patterns=meta["patterns"],
+                difficulty=meta["difficulty"],
+                guide_sections=meta.get("guide_sections", []),
+            )
+        )
     return cases
 
 

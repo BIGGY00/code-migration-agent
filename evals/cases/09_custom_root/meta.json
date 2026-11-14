@@ -4,5 +4,8 @@
     "__root__ -> RootModel",
     ".__root__ -> .root"
   ],
-  "difficulty": "hard"
+  "difficulty": "hard",
+  "guide_sections": [
+    "Changes to `pydantic.BaseModel`"
+  ]
 }

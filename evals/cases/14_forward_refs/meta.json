@@ -3,5 +3,8 @@
   "patterns": [
     "update_forward_refs -> model_rebuild"
   ],
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "guide_sections": [
+    "Changes to `pydantic.BaseModel`"
+  ]
 }

@@ -3,5 +3,8 @@
   "patterns": [
     "@root_validator -> @model_validator(mode='after')"
   ],
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "guide_sections": [
+    "`@validator` and `@root_validator` are deprecated"
+  ]
 }

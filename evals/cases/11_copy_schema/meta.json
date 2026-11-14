@@ -4,5 +4,8 @@
     ".copy(update=) -> .model_copy(update=)",
     ".schema() -> .model_json_schema()"
   ],
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "guide_sections": [
+    "Changes to `pydantic.BaseModel`"
+  ]
 }

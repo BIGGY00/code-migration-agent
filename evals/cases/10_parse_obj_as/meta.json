@@ -3,5 +3,8 @@
   "patterns": [
     "parse_obj_as -> TypeAdapter.validate_python"
   ],
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "guide_sections": [
+    "Introduction of `TypeAdapter`"
+  ]
 }

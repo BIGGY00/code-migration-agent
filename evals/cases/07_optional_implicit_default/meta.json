@@ -3,5 +3,8 @@
   "patterns": [
     "Optional[X] without default is required in v2"
   ],
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "guide_sections": [
+    "Required, optional, and nullable fields"
+  ]
 }

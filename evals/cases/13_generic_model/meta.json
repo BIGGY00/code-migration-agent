@@ -3,5 +3,8 @@
   "patterns": [
     "pydantic.generics.GenericModel -> BaseModel + Generic"
   ],
-  "difficulty": "hard"
+  "difficulty": "hard",
+  "guide_sections": [
+    "Changes to `pydantic.generics.GenericModel`"
+  ]
 }

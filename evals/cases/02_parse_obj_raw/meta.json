@@ -4,5 +4,8 @@
     "BaseModel.parse_obj",
     "BaseModel.parse_raw"
   ],
-  "difficulty": "easy"
+  "difficulty": "easy",
+  "guide_sections": [
+    "Changes to `pydantic.BaseModel`"
+  ]
 }

@@ -1,0 +1,704 @@
+{
+  "generated_at": "2026-11-14T14:28:37+00:00",
+  "retriever": "bm25",
+  "model": null,
+  "cost_usd": 0.0,
+  "query": "raw before.py source",
+  "guide": {
+    "path": "data/migration_guide.md",
+    "sha256": "5518568dae0d90c670cfa86b227e434f73bbdfe3841417441ddc4fb98d9f436a",
+    "chunks": 35
+  },
+  "headline_k": 3,
+  "n_cases": 14,
+  "summary": {
+    "@1": {
+      "mean_recall": 0.5357,
+      "hit_rate": 0.5
+    },
+    "@3": {
+      "mean_recall": 0.9286,
+      "hit_rate": 0.9286
+    },
+    "@5": {
+      "mean_recall": 1.0,
+      "hit_rate": 1.0
+    }
+  },
+  "cases": [
+    {
+      "id": "01_dict_json",
+      "difficulty": "easy",
+      "expected": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 11.5486
+        },
+        {
+          "rank": 2,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 11.4555
+        },
+        {
+          "rank": 3,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 9.4523
+        },
+        {
+          "rank": 4,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 8.8891
+        },
+        {
+          "rank": 5,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 8.7817
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 1.0
+      },
+      "found": [],
+      "missed": [
+        "Changes to `pydantic.BaseModel`"
+      ]
+    },
+    {
+      "id": "02_parse_obj_raw",
+      "difficulty": "easy",
+      "expected": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 21.5889
+        },
+        {
+          "rank": 2,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 11.2016
+        },
+        {
+          "rank": 3,
+          "id": "c33-deprecated-and-moved-in-pydantic-v2",
+          "title": "Deprecated and moved in Pydantic V2",
+          "score": 9.8075
+        },
+        {
+          "rank": 4,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 9.0364
+        },
+        {
+          "rank": 5,
+          "id": "c09-changes-to-dataclasses",
+          "title": "Migration guide > Changes to dataclasses",
+          "score": 7.6651
+        }
+      ],
+      "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "03_validator",
+      "difficulty": "easy",
+      "expected": [
+        "`@validator` and `@root_validator` are deprecated"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c13-typeerror-is-no-longer-converted-to-validationer",
+          "title": "Migration guide > Changes to validators > `TypeError` is no longer converted to `ValidationError` in validators",
+          "score": 10.1292
+        },
+        {
+          "rank": 2,
+          "id": "c11-validator-and-root-validator-are-deprecated",
+          "title": "Migration guide > Changes to validators > `@validator` and `@root_validator` are deprecated",
+          "score": 9.1651
+        },
+        {
+          "rank": 3,
+          "id": "c07-changes-to-pydantic-generics-genericmodel",
+          "title": "Migration guide > Changes to `pydantic.generics.GenericModel`",
+          "score": 9.0509
+        },
+        {
+          "rank": 4,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 7.9902
+        },
+        {
+          "rank": 5,
+          "id": "c20-required-optional-and-nullable-fields",
+          "title": "Migration guide > Changes to Handling of Standard Types > Required, optional, and nullable fields",
+          "score": 7.182
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "`@validator` and `@root_validator` are deprecated"
+      ],
+      "missed": []
+    },
+    {
+      "id": "04_validator_pre_always",
+      "difficulty": "medium",
+      "expected": [
+        "`@validator` and `@root_validator` are deprecated"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 10.4991
+        },
+        {
+          "rank": 2,
+          "id": "c12-changes-to-validator-s-allowed-signatures",
+          "title": "Migration guide > Changes to validators > Changes to `@validator`'s allowed signatures",
+          "score": 10.3755
+        },
+        {
+          "rank": 3,
+          "id": "c11-validator-and-root-validator-are-deprecated",
+          "title": "Migration guide > Changes to validators > `@validator` and `@root_validator` are deprecated",
+          "score": 9.6994
+        },
+        {
+          "rank": 4,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 9.3978
+        },
+        {
+          "rank": 5,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 9.2133
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "`@validator` and `@root_validator` are deprecated"
+      ],
+      "missed": []
+    },
+    {
+      "id": "05_root_validator",
+      "difficulty": "medium",
+      "expected": [
+        "`@validator` and `@root_validator` are deprecated"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c11-validator-and-root-validator-are-deprecated",
+          "title": "Migration guide > Changes to validators > `@validator` and `@root_validator` are deprecated",
+          "score": 17.3488
+        },
+        {
+          "rank": 2,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 15.6159
+        },
+        {
+          "rank": 3,
+          "id": "c07-changes-to-pydantic-generics-genericmodel",
+          "title": "Migration guide > Changes to `pydantic.generics.GenericModel`",
+          "score": 13.0311
+        },
+        {
+          "rank": 4,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 12.0013
+        },
+        {
+          "rank": 5,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 11.501
+        }
+      ],
+      "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "`@validator` and `@root_validator` are deprecated"
+      ],
+      "missed": []
+    },
+    {
+      "id": "06_orm_mode_config",
+      "difficulty": "medium",
+      "expected": [
+        "Changes to config",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 25.2245
+        },
+        {
+          "rank": 2,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 13.0109
+        },
+        {
+          "rank": 3,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 10.3784
+        },
+        {
+          "rank": 4,
+          "id": "c12-changes-to-validator-s-allowed-signatures",
+          "title": "Migration guide > Changes to validators > Changes to `@validator`'s allowed signatures",
+          "score": 10.1555
+        },
+        {
+          "rank": 5,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 9.074
+        }
+      ],
+      "recall": {
+        "@1": 0.5,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to config",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "07_optional_implicit_default",
+      "difficulty": "medium",
+      "expected": [
+        "Required, optional, and nullable fields"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c20-required-optional-and-nullable-fields",
+          "title": "Migration guide > Changes to Handling of Standard Types > Required, optional, and nullable fields",
+          "score": 9.8146
+        },
+        {
+          "rank": 2,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 7.9392
+        },
+        {
+          "rank": 3,
+          "id": "c12-changes-to-validator-s-allowed-signatures",
+          "title": "Migration guide > Changes to validators > Changes to `@validator`'s allowed signatures",
+          "score": 7.1819
+        },
+        {
+          "rank": 4,
+          "id": "c29-constrained-types",
+          "title": "Migration guide > Constrained types",
+          "score": 7.1744
+        },
+        {
+          "rank": 5,
+          "id": "c14-validator-behavior-changes",
+          "title": "Migration guide > Changes to validators > Validator behavior changes",
+          "score": 6.2003
+        }
+      ],
+      "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Required, optional, and nullable fields"
+      ],
+      "missed": []
+    },
+    {
+      "id": "08_field_regex_min_items",
+      "difficulty": "easy",
+      "expected": [
+        "Changes to `pydantic.Field`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 22.2632
+        },
+        {
+          "rank": 2,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 11.5643
+        },
+        {
+          "rank": 3,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 8.3244
+        },
+        {
+          "rank": 4,
+          "id": "c11-validator-and-root-validator-are-deprecated",
+          "title": "Migration guide > Changes to validators > `@validator` and `@root_validator` are deprecated",
+          "score": 7.8007
+        },
+        {
+          "rank": 5,
+          "id": "c20-required-optional-and-nullable-fields",
+          "title": "Migration guide > Changes to Handling of Standard Types > Required, optional, and nullable fields",
+          "score": 7.4588
+        }
+      ],
+      "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to `pydantic.Field`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "09_custom_root",
+      "difficulty": "hard",
+      "expected": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 16.4
+        },
+        {
+          "rank": 2,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 15.1831
+        },
+        {
+          "rank": 3,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 10.7696
+        },
+        {
+          "rank": 4,
+          "id": "c33-deprecated-and-moved-in-pydantic-v2",
+          "title": "Deprecated and moved in Pydantic V2",
+          "score": 9.6322
+        },
+        {
+          "rank": 5,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 9.3978
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "10_parse_obj_as",
+      "difficulty": "medium",
+      "expected": [
+        "Introduction of `TypeAdapter`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 17.5155
+        },
+        {
+          "rank": 2,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 12.8696
+        },
+        {
+          "rank": 3,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 12.3181
+        },
+        {
+          "rank": 4,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 11.0848
+        },
+        {
+          "rank": 5,
+          "id": "c33-deprecated-and-moved-in-pydantic-v2",
+          "title": "Deprecated and moved in Pydantic V2",
+          "score": 9.6405
+        }
+      ],
+      "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Introduction of `TypeAdapter`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "11_copy_schema",
+      "difficulty": "easy",
+      "expected": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 11.1371
+        },
+        {
+          "rank": 2,
+          "id": "c33-deprecated-and-moved-in-pydantic-v2",
+          "title": "Deprecated and moved in Pydantic V2",
+          "score": 8.181
+        },
+        {
+          "rank": 3,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 8.1073
+        },
+        {
+          "rank": 4,
+          "id": "c22-type-conversion-from-floats-to-integers",
+          "title": "Migration guide > Type conversion from floats to integers",
+          "score": 7.1882
+        },
+        {
+          "rank": 5,
+          "id": "c14-validator-behavior-changes",
+          "title": "Migration guide > Changes to validators > Validator behavior changes",
+          "score": 7.1637
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "12_extra_forbid_frozen",
+      "difficulty": "medium",
+      "expected": [
+        "Changes to config"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 17.3979
+        },
+        {
+          "rank": 2,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 11.8348
+        },
+        {
+          "rank": 3,
+          "id": "c32-moved-in-pydantic-v2",
+          "title": "Moved in Pydantic V2",
+          "score": 9.5329
+        },
+        {
+          "rank": 4,
+          "id": "c09-changes-to-dataclasses",
+          "title": "Migration guide > Changes to dataclasses",
+          "score": 9.3669
+        },
+        {
+          "rank": 5,
+          "id": "c26-basesettings-has-moved-to-pydantic-settings",
+          "title": "Migration guide > `BaseSettings` has moved to `pydantic-settings`",
+          "score": 8.2673
+        }
+      ],
+      "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to config"
+      ],
+      "missed": []
+    },
+    {
+      "id": "13_generic_model",
+      "difficulty": "hard",
+      "expected": [
+        "Changes to `pydantic.generics.GenericModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c07-changes-to-pydantic-generics-genericmodel",
+          "title": "Migration guide > Changes to `pydantic.generics.GenericModel`",
+          "score": 16.8649
+        },
+        {
+          "rank": 2,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 13.972
+        },
+        {
+          "rank": 3,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 12.8882
+        },
+        {
+          "rank": 4,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 11.6975
+        },
+        {
+          "rank": 5,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 9.3943
+        }
+      ],
+      "recall": {
+        "@1": 1.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to `pydantic.generics.GenericModel`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "14_forward_refs",
+      "difficulty": "easy",
+      "expected": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 11.9452
+        },
+        {
+          "rank": 2,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 9.1287
+        },
+        {
+          "rank": 3,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 6.7705
+        },
+        {
+          "rank": 4,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 6.6797
+        },
+        {
+          "rank": 5,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 6.6601
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": []
+    }
+  ]
+}

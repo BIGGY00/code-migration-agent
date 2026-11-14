@@ -3,5 +3,8 @@
   "patterns": [
     "@validator(pre=True, always=True) -> field_validator(mode='before') + validate_default"
   ],
-  "difficulty": "medium"
+  "difficulty": "medium",
+  "guide_sections": [
+    "`@validator` and `@root_validator` are deprecated"
+  ]
 }
