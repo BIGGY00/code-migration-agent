@@ -37,13 +37,13 @@ def load_summary(results_dir: Path, mode: str) -> dict | None:
 def format_report(results_dir: Path = RESULTS_DIR) -> str:
     summaries = {mode: load_summary(results_dir, mode) for mode, _ in MODES}
     lines = [
-        "| Mode | Model / Tool | Pass rate | Avg rounds (passed) | Total cost (USD) | Avg latency / case |",
-        "|---|---|---:|---:|---:|---:|",
+        "| Mode | Model / Tool | Core set | Hard set | All cases | Avg rounds (passed) | Total cost (USD) | Avg latency / case |",
+        "|---|---|---:|---:|---:|---:|---:|---:|",
     ]
     for mode, label in MODES:
         s = summaries[mode]
         if s is None:
-            lines.append(f"| {label} | _pending LLM run_ | — | — | — | — |")
+            lines.append(f"| {label} | _pending LLM run_ | — | — | — | — | — | — |")
             continue
         passed = f"{s['passed_cases']}/{s['total_cases']} ({s['pass_rate']:.1%})"
         avg_r = "0 (rule)" if mode == "bump_pydantic" else (
@@ -51,7 +51,11 @@ def format_report(results_dir: Path = RESULTS_DIR) -> str:
         )
         cost = "$0.00000" if mode == "bump_pydantic" else f"${s['total_cost_usd']:.5f}"
         lat = f"{s['avg_latency_s']:.2f}s"
-        lines.append(f"| {label} | `{s['model']}` | {passed} | {avg_r} | {cost} | {lat} |")
+        suite_cells = []
+        for su in ("core", "hard"):
+            rows = [c for c in s["cases"] if c.get("suite", "core") == su]
+            suite_cells.append(f"{sum(c['passed'] for c in rows)}/{len(rows)}" if rows else "—")
+        lines.append(f"| {label} | `{s['model']}` | {suite_cells[0]} | {suite_cells[1]} | {passed} | {avg_r} | {cost} | {lat} |")
 
     available = [s for s in summaries.values() if s is not None]
     if available:
@@ -64,13 +68,14 @@ def format_report(results_dir: Path = RESULTS_DIR) -> str:
         lines.extend([
             "",
             "<details>",
-            "<summary>Per-case breakdown across all 14 eval cases</summary>",
+            f"<summary>Per-case breakdown across all {len(case_ids)} eval cases</summary>",
             "",
-            "| Case | Difficulty | `bump-pydantic` | `single_shot` | `agent` |",
-            "|---|---|---|---|---|",
+            "| Case | Set | Difficulty | `bump-pydantic` | `single_shot` | `agent` |",
+            "|---|---|---|---|---|---|",
         ])
         for cid in case_ids:
-            diff = available[0]["cases"][case_ids.index(cid)]["difficulty"]
+            first = available[0]["cases"][case_ids.index(cid)]
+            diff, suite = first["difficulty"], first.get("suite", "core")
             cells = []
             for mode, _ in MODES:
                 row = by_mode.get(mode, {}).get(cid)
@@ -80,7 +85,7 @@ def format_report(results_dir: Path = RESULTS_DIR) -> str:
                     cells.append("PASS" if mode == "bump_pydantic" else f"PASS (r{row['rounds']})")
                 else:
                     cells.append(f"FAIL ({row['status']})")
-            lines.append(f"| `{cid}` | {diff} | {cells[0]} | {cells[1]} | {cells[2]} |")
+            lines.append(f"| `{cid}` | {suite} | {diff} | {cells[0]} | {cells[1]} | {cells[2]} |")
         lines.extend(["", "</details>"])
 
     return "\n".join(lines)

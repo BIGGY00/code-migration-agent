@@ -1,17 +1,29 @@
 {
-  "generated_at": "2026-11-19T17:34:14+00:00",
+  "generated_at": "2026-11-19T18:05:24+00:00",
   "mode": "bump_pydantic",
   "model": "bump-pydantic",
-  "total_cases": 14,
+  "total_cases": 24,
   "passed_cases": 4,
-  "pass_rate": 0.2857,
+  "pass_rate": 0.1667,
   "avg_rounds_to_pass": 0.0,
   "avg_rounds_all": 0.0,
   "total_input_tokens": 0,
   "total_output_tokens": 0,
   "total_cost_usd": 0.0,
   "avg_cost_usd": 0.0,
-  "avg_latency_s": 1.075,
+  "avg_latency_s": 1.071,
+  "by_suite": {
+    "core": {
+      "total_cases": 14,
+      "passed_cases": 4,
+      "total_cost_usd": 0.0
+    },
+    "hard": {
+      "total_cases": 10,
+      "passed_cases": 0,
+      "total_cost_usd": 0.0
+    }
+  },
   "cases": [
     {
       "case_id": "01_dict_json",
@@ -23,12 +35,13 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.088,
+      "latency_s": 1.111,
       "remaining_patterns": [
         "BaseModel.dict()@12",
         "BaseModel.json()@16"
       ],
-      "reason": "FAILED test_case.py::test_json_roundtrip - pydantic.warnings.PydanticDeprecat..."
+      "reason": "FAILED test_case.py::test_json_roundtrip - pydantic.warnings.PydanticDeprecat...",
+      "suite": "core"
     },
     {
       "case_id": "02_parse_obj_raw",
@@ -40,12 +53,13 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.089,
+      "latency_s": 1.082,
       "remaining_patterns": [
         "BaseModel.parse_obj()@10",
         "BaseModel.parse_raw()/parse_file()@14"
       ],
-      "reason": "FAILED test_case.py::test_invalid_raises - pydantic.warnings.PydanticDeprecat..."
+      "reason": "FAILED test_case.py::test_invalid_raises - pydantic.warnings.PydanticDeprecat...",
+      "suite": "core"
     },
     {
       "case_id": "03_validator",
@@ -57,9 +71,10 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.091,
+      "latency_s": 1.116,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "04_validator_pre_always",
@@ -71,11 +86,12 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.017,
+      "latency_s": 1.079,
       "remaining_patterns": [
         "@validator(pre=/always=)@11"
       ],
-      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1..."
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1...",
+      "suite": "core"
     },
     {
       "case_id": "05_root_validator",
@@ -87,11 +103,12 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.055,
+      "latency_s": 1.057,
       "remaining_patterns": [
         "@root_validator@9"
       ],
-      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1..."
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1...",
+      "suite": "core"
     },
     {
       "case_id": "06_orm_mode_config",
@@ -103,11 +120,12 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.12,
+      "latency_s": 1.123,
       "remaining_patterns": [
         "BaseModel.from_orm()@11"
       ],
-      "reason": "FAILED test_case.py::test_from_object_attributes - pydantic.warnings.Pydantic..."
+      "reason": "FAILED test_case.py::test_from_object_attributes - pydantic.warnings.Pydantic...",
+      "suite": "core"
     },
     {
       "case_id": "07_optional_implicit_default",
@@ -119,9 +137,10 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 0.976,
+      "latency_s": 0.978,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "08_field_regex_min_items",
@@ -133,9 +152,10 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.034,
+      "latency_s": 0.956,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "09_custom_root",
@@ -147,13 +167,14 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.059,
+      "latency_s": 1.017,
       "remaining_patterns": [
         "__root__ custom root type@6",
         "BaseModel.parse_obj()@10",
         "__root__ custom root type@14"
       ],
-      "reason": "ERROR test_case.py - pydantic.errors.PydanticUserError: To define root models..."
+      "reason": "ERROR test_case.py - pydantic.errors.PydanticUserError: To define root models...",
+      "suite": "core"
     },
     {
       "case_id": "10_parse_obj_as",
@@ -165,12 +186,13 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.006,
+      "latency_s": 0.964,
       "remaining_patterns": [
         "parse_obj_as()@2",
         "parse_obj_as()@11"
       ],
-      "reason": "FAILED test_case.py::test_invalid_item - pydantic.warnings.PydanticDeprecated..."
+      "reason": "FAILED test_case.py::test_invalid_item - pydantic.warnings.PydanticDeprecated...",
+      "suite": "core"
     },
     {
       "case_id": "11_copy_schema",
@@ -182,12 +204,13 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.022,
+      "latency_s": 1.008,
       "remaining_patterns": [
         "BaseModel.copy()@10",
         "BaseModel.schema()/schema_json()@14"
       ],
-      "reason": "FAILED test_case.py::test_schema_fields - pydantic.warnings.PydanticDeprecate..."
+      "reason": "FAILED test_case.py::test_schema_fields - pydantic.warnings.PydanticDeprecate...",
+      "suite": "core"
     },
     {
       "case_id": "12_extra_forbid_frozen",
@@ -199,12 +222,13 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.272,
+      "latency_s": 1.219,
       "remaining_patterns": [
         "Config.allow_mutation@7",
         "Config.allow_mutation@9"
       ],
-      "reason": "FAILED test_case.py::test_is_immutable - Failed: DID NOT RAISE ValidationError"
+      "reason": "FAILED test_case.py::test_is_immutable - Failed: DID NOT RAISE ValidationError",
+      "suite": "core"
     },
     {
       "case_id": "13_generic_model",
@@ -216,9 +240,10 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.149,
+      "latency_s": 1.116,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "14_forward_refs",
@@ -230,11 +255,184 @@
       "input_tokens": 0,
       "output_tokens": 0,
       "cost_usd": 0.0,
-      "latency_s": 1.071,
+      "latency_s": 1.019,
       "remaining_patterns": [
         "BaseModel.update_forward_refs()@10"
       ],
-      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: The `update..."
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: The `update...",
+      "suite": "core"
+    },
+    {
+      "case_id": "15_union_smart_mode",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.035,
+      "remaining_patterns": [
+        "BaseModel.parse_obj()@15"
+      ],
+      "reason": "FAILED test_case.py::test_bad_qty_rejected - pydantic.warnings.PydanticDeprec...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "16_float_to_int",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.076,
+      "remaining_patterns": [
+        "BaseModel.parse_obj()@16"
+      ],
+      "reason": "FAILED test_case.py::test_float_counts_are_truncated - pydantic.warnings.Pyda...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "17_number_to_str",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.035,
+      "remaining_patterns": [],
+      "reason": "FAILED test_case.py::test_numeric_sku_becomes_text - pydantic_core._pydantic_...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "18_model_dict_equality",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.003,
+      "remaining_patterns": [
+        "BaseModel.copy()@18"
+      ],
+      "reason": "FAILED test_case.py::test_reset_restores_defaults - pydantic.warnings.Pydanti...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "19_url_not_str",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 0.98,
+      "remaining_patterns": [
+        "BaseModel.parse_raw()/parse_file()@10"
+      ],
+      "reason": "FAILED test_case.py::test_invalid_url_rejected - pydantic.warnings.PydanticDe...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "20_validator_typeerror",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 0.983,
+      "remaining_patterns": [
+        "@validator(pre=/always=)@12"
+      ],
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "21_each_item_values",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 0.98,
+      "remaining_patterns": [
+        "@validator@11"
+      ],
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "22_nested_subclass_dump",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 0.981,
+      "remaining_patterns": [
+        "BaseModel.dict()@20"
+      ],
+      "reason": "FAILED test_case.py::test_export_plain_events - pydantic.warnings.PydanticDep...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "23_dict_from_pairs",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 0.992,
+      "remaining_patterns": [
+        "BaseModel.json()@15"
+      ],
+      "reason": "FAILED test_case.py::test_json_roundtrip - pydantic_core._pydantic_core.Valid...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "24_service_module",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.784,
+      "remaining_patterns": [
+        "BaseModel.parse_raw()/parse_file()@45",
+        "BaseModel.dict()@49",
+        "BaseModel.json()@53",
+        "BaseModel.copy()@57",
+        "BaseModel.schema()/schema_json()@61"
+      ],
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: `json_encod...",
+      "suite": "hard"
     }
   ]
 }

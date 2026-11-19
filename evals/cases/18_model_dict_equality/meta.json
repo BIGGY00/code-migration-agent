@@ -1,0 +1,13 @@
+{
+  "id": "18_model_dict_equality",
+  "patterns": [
+    "model == dict is always False in v2",
+    ".copy(update=) -> .model_copy(update=)"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "No warning at all: comparing a model to a dict silently returns False in v2.",
+  "guide_sections": [
+    "Changes to `pydantic.BaseModel`"
+  ]
+}

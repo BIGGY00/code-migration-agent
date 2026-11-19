@@ -35,6 +35,7 @@ class Case:
     patterns: list[str] = field(default_factory=list)
     difficulty: str = "unknown"
     guide_sections: list[str] = field(default_factory=list)  # expected migration-guide headings
+    suite: str = "core"  # "core" (deprecated APIs) or "hard" (silent behaviour changes, multi-pattern)
 
     @property
     def before(self) -> Path:
@@ -67,6 +68,7 @@ def load_cases(cases_dir: Path = CASES_DIR) -> list[Case]:
                 patterns=meta["patterns"],
                 difficulty=meta["difficulty"],
                 guide_sections=meta.get("guide_sections", []),
+                suite=meta.get("suite", "core"),
             )
         )
     return cases

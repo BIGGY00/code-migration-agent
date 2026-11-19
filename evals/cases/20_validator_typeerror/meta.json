@@ -1,0 +1,15 @@
+{
+  "id": "20_validator_typeerror",
+  "patterns": [
+    "TypeError in a validator is no longer wrapped as ValidationError",
+    "@validator(pre=True) with values -> field_validator(mode='before') + info.data"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "len(None) raised TypeError, which v1 reported as ValidationError; in v2 the TypeError escapes.",
+  "guide_sections": [
+    "`TypeError` is no longer converted to `ValidationError` in validators",
+    "`@validator` and `@root_validator` are deprecated",
+    "Changes to `@validator`'s allowed signatures"
+  ]
+}

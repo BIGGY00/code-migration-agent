@@ -1,0 +1,14 @@
+{
+  "id": "15_union_smart_mode",
+  "patterns": [
+    "Union[int, str] keeps numeric strings as str in v2 (smart mode)",
+    "BaseModel.parse_obj"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "Runs without warnings after renaming parse_obj, but '42' stays a string instead of becoming 42.",
+  "guide_sections": [
+    "Unions",
+    "Changes to `pydantic.BaseModel`"
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "what": "Hard set (10 cases): run 1 is the full 24-case eval, runs 2-4 are repeats on the hard set only",
+  "model": "anthropic/claude-haiku-5-5",
+  "modes": {
+    "single_shot": [
+      {
+        "run": 1,
+        "file": "results/summary_single_shot.json",
+        "passed": 6,
+        "n": 10,
+        "cost_usd": 0.00362,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 1,
+          "17_number_to_str": 1,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 1,
+          "20_validator_typeerror": 1,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 1,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": [
+          "16_float_to_int",
+          "17_number_to_str",
+          "19_url_not_str",
+          "20_validator_typeerror"
+        ]
+      },
+      {
+        "run": 2,
+        "file": "results/repeats/hard_single_shot_run2.json",
+        "passed": 5,
+        "n": 10,
+        "cost_usd": 0.003339,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 1,
+          "17_number_to_str": 1,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 1,
+          "20_validator_typeerror": 1,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 1,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": [
+          "16_float_to_int",
+          "17_number_to_str",
+          "19_url_not_str",
+          "20_validator_typeerror",
+          "22_nested_subclass_dump"
+        ]
+      },
+      {
+        "run": 3,
+        "file": "results/repeats/hard_single_shot_run3.json",
+        "passed": 5,
+        "n": 10,
+        "cost_usd": 0.003468,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 1,
+          "17_number_to_str": 1,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 1,
+          "20_validator_typeerror": 1,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 1,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": [
+          "16_float_to_int",
+          "17_number_to_str",
+          "19_url_not_str",
+          "20_validator_typeerror",
+          "22_nested_subclass_dump"
+        ]
+      },
+      {
+        "run": 4,
+        "file": "results/repeats/hard_single_shot_run4.json",
+        "passed": 6,
+        "n": 10,
+        "cost_usd": 0.00368,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 1,
+          "17_number_to_str": 1,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 1,
+          "20_validator_typeerror": 1,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 1,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": [
+          "16_float_to_int",
+          "17_number_to_str",
+          "19_url_not_str",
+          "20_validator_typeerror"
+        ]
+      }
+    ],
+    "agent": [
+      {
+        "run": 1,
+        "file": "results/summary_agent.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.013894,
+        "rounds": {
+          "15_union_smart_mode": 2,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 2,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 2
+        },
+        "failed": []
+      },
+      {
+        "run": 2,
+        "file": "results/repeats/hard_agent_run2.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.013882,
+        "rounds": {
+          "15_union_smart_mode": 2,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 2,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 2
+        },
+        "failed": []
+      },
+      {
+        "run": 3,
+        "file": "results/repeats/hard_agent_run3.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.012918,
+        "rounds": {
+          "15_union_smart_mode": 2,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 2,
+          "23_dict_from_pairs": 2,
+          "24_service_module": 1
+        },
+        "failed": []
+      },
+      {
+        "run": 4,
+        "file": "results/repeats/hard_agent_run4.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.012626,
+        "rounds": {
+          "15_union_smart_mode": 2,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 2,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": []
+      }
+    ]
+  }
+}

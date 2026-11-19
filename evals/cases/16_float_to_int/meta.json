@@ -1,0 +1,16 @@
+{
+  "id": "16_float_to_int",
+  "patterns": [
+    "int field no longer truncates floats",
+    "@validator -> @field_validator",
+    "BaseModel.parse_obj"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "v1 truncated 2.7 to 2; v2 raises a ValidationError unless a before-validator truncates.",
+  "guide_sections": [
+    "Type conversion from floats to integers",
+    "`@validator` and `@root_validator` are deprecated",
+    "Changes to `pydantic.BaseModel`"
+  ]
+}

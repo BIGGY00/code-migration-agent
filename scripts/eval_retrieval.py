@@ -79,6 +79,7 @@ def main() -> int:
             {
                 "id": case.id,
                 "difficulty": case.difficulty,
+                "suite": case.suite,
                 "expected": case.guide_sections,
                 "retrieved": [
                     {"rank": i + 1, "id": h.chunk.id, "title": h.chunk.title, "score": round(h.score, 4)}
@@ -91,13 +92,20 @@ def main() -> int:
         )
 
     n = len(rows)
-    summary = {
-        f"@{k}": {
-            "mean_recall": round(sum(r["recall"][f"@{k}"] for r in rows) / n, 4),
-            "hit_rate": round(sum(r["recall"][f"@{k}"] == 1.0 for r in rows) / n, 4),
+
+    def summarize(subset: list[dict]) -> dict:
+        m = len(subset)
+        return {
+            f"@{k}": {
+                "mean_recall": round(sum(r["recall"][f"@{k}"] for r in subset) / m, 4),
+                "hit_rate": round(sum(r["recall"][f"@{k}"] == 1.0 for r in subset) / m, 4),
+            }
+            for k in ks
         }
-        for k in ks
-    }
+
+    summary = summarize(rows)
+    suites = sorted({r["suite"] for r in rows})
+    by_suite = {su: {"n_cases": sum(r["suite"] == su for r in rows), **summarize([r for r in rows if r["suite"] == su])} for su in suites}
     result = {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "retriever": kind,
@@ -108,6 +116,7 @@ def main() -> int:
         "headline_k": args.k,
         "n_cases": n,
         "summary": summary,
+        "by_suite": by_suite,
         "cases": rows,
     }
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -128,6 +137,8 @@ def main() -> int:
     for kk in ks:
         s = summary[f"@{kk}"]
         print(f"recall@{kk}: {s['mean_recall']:.3f}   hit@{kk}: {s['hit_rate']:.3f}")
+    for su, v in by_suite.items():
+        print(f"  {su:5} ({v['n_cases']:2} cases): " + "  ".join(f"recall@{kk} {v[f'@{kk}']['mean_recall']:.3f}" for kk in ks))
     print(f"\nsaved {out.relative_to(ROOT) if out.is_relative_to(ROOT) else out}")
     return 0
 

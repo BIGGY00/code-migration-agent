@@ -1,0 +1,14 @@
+{
+  "id": "21_each_item_values",
+  "patterns": [
+    "@validator(each_item=True) has no v2 equivalent",
+    "values -> info.data"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "each_item must become a loop (or Annotated validator), and values must become info.data.",
+  "guide_sections": [
+    "`@validator` and `@root_validator` are deprecated",
+    "Changes to `@validator`'s allowed signatures"
+  ]
+}

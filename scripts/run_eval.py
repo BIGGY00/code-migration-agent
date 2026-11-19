@@ -64,6 +64,14 @@ class CaseEvalResult:
     latency_s: float
     remaining_patterns: list[str]
     reason: str | None = None
+    suite: str = "core"
+
+
+def _save_source(out_dir: Path | None, case: Case, source: str) -> None:
+    """Keep the migrated file next to the JSONL log so results can be audited."""
+    if out_dir:
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / f"{case.id}.py").write_text(source)
 
 
 def _failure_line(output: str) -> str:
@@ -79,6 +87,7 @@ def run_single_shot(
     model: str | None = None,
     complete_fn: Callable[..., llm.LLMResult] | None = None,
     log_path: Path | None = None,
+    out_dir: Path | None = None,
 ) -> CaseEvalResult:
     """Single LLM call with no retrieval, no static scan hints, and no retry loop."""
     complete_fn = complete_fn or llm.complete
@@ -97,6 +106,7 @@ def run_single_shot(
         return CaseEvalResult(
             case_id=case.id,
             difficulty=case.difficulty,
+            suite=case.suite,
             status="error",
             passed=False,
             rounds=0,
@@ -110,6 +120,7 @@ def run_single_shot(
         )
 
     candidate = extract_code(resp.text)
+    _save_source(out_dir, case, candidate)
     test = run_tests(case, candidate)
     latency = round(time.perf_counter() - start, 3)
     remaining = [f"{f.pattern}@{f.line}" for f in scan(candidate)]
@@ -135,6 +146,7 @@ def run_single_shot(
     return CaseEvalResult(
         case_id=case.id,
         difficulty=case.difficulty,
+        suite=case.suite,
         status="passed" if test.passed else "failed",
         passed=test.passed,
         rounds=1,
@@ -164,6 +176,7 @@ def run_bump_pydantic(
     case: Case,
     executable: str | None = None,
     log_path: Path | None = None,
+    out_dir: Path | None = None,
 ) -> CaseEvalResult:
     """Rule-based baseline: run `bump-pydantic target.py` then evaluate with pytest."""
     exe = _find_bump_pydantic(executable)
@@ -186,6 +199,7 @@ def run_bump_pydantic(
             return CaseEvalResult(
                 case_id=case.id,
                 difficulty=case.difficulty,
+                suite=case.suite,
                 status="error",
                 passed=False,
                 rounds=0,
@@ -198,6 +212,7 @@ def run_bump_pydantic(
                 reason=f"bump-pydantic exited {proc.returncode}: {err[-1] if err else 'unknown'}",
             )
         migrated = target.read_text()
+    _save_source(out_dir, case, migrated)
 
     test = run_tests(case, migrated)
     latency = round(time.perf_counter() - start, 3)
@@ -220,6 +235,7 @@ def run_bump_pydantic(
     return CaseEvalResult(
         case_id=case.id,
         difficulty=case.difficulty,
+        suite=case.suite,
         status="passed" if test.passed else "failed",
         passed=test.passed,
         rounds=0,
@@ -241,6 +257,7 @@ def run_agent_case(
     retriever=None,
     complete_fn: Callable[..., llm.LLMResult] | None = None,
     log_path: Path | None = None,
+    out_dir: Path | None = None,
 ) -> CaseEvalResult:
     """Full RAG + static scan + test-driven fix loop."""
     res = migrate(
@@ -253,11 +270,13 @@ def run_agent_case(
         complete_fn=complete_fn,
         log_path=log_path,
     )
+    _save_source(out_dir, case, res.source)
     tin, tout = res.tokens
     used_model = res.rounds[-1].model if res.rounds else (model or "unknown")
     return CaseEvalResult(
         case_id=case.id,
         difficulty=case.difficulty,
+        suite=case.suite,
         status=res.status,
         passed=res.status == "passed",
         rounds=len(res.rounds),
@@ -296,6 +315,14 @@ def summarize(mode: str, model_label: str, results: list[CaseEvalResult]) -> dic
         "total_cost_usd": total_cost,
         "avg_cost_usd": avg_cost,
         "avg_latency_s": avg_latency,
+        "by_suite": {
+            su: {
+                "total_cases": sum(r.suite == su for r in results),
+                "passed_cases": sum(r.passed for r in results if r.suite == su),
+                "total_cost_usd": round(sum(r.cost_usd for r in results if r.suite == su), 6),
+            }
+            for su in sorted({r.suite for r in results})
+        },
         "cases": [asdict(r) for r in results],
     }
 
@@ -322,15 +349,17 @@ def main(argv: list[str] | None = None) -> int:
 
     model_label = "bump-pydantic" if args.mode == "bump_pydantic" else (args.model or llm.default_model())
     out_path = args.out or (RESULTS_DIR / f"summary_{args.mode}.json")
-    log_path = RUNS_DIR / f"{datetime.now():%Y%m%d-%H%M%S}-{args.mode}.jsonl"
+    stamp = f"{datetime.now():%Y%m%d-%H%M%S}-{args.mode}"
+    log_path = RUNS_DIR / f"{stamp}.jsonl"
+    out_dir = RUNS_DIR / stamp  # migrated files, one per case
 
     retriever = BM25Retriever() if args.mode == "agent" else None
     results: list[CaseEvalResult] = []
     for case in cases:
         if args.mode == "bump_pydantic":
-            res = run_bump_pydantic(case, log_path=log_path)
+            res = run_bump_pydantic(case, log_path=log_path, out_dir=out_dir)
         elif args.mode == "single_shot":
-            res = run_single_shot(case, model=model_label, log_path=log_path)
+            res = run_single_shot(case, model=model_label, log_path=log_path, out_dir=out_dir)
         else:
             res = run_agent_case(
                 case,
@@ -339,6 +368,7 @@ def main(argv: list[str] | None = None) -> int:
                 model=model_label,
                 retriever=retriever,
                 log_path=log_path,
+                out_dir=out_dir,
             )
         results.append(res)
         verdict = "PASS" if res.passed else res.status.upper()

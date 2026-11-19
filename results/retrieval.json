@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-14T14:28:37+00:00",
+  "generated_at": "2026-11-19T18:04:52+00:00",
   "retriever": "bm25",
   "model": null,
   "cost_usd": 0.0,
@@ -10,25 +10,58 @@
     "chunks": 35
   },
   "headline_k": 3,
-  "n_cases": 14,
+  "n_cases": 24,
   "summary": {
     "@1": {
-      "mean_recall": 0.5357,
-      "hit_rate": 0.5
+      "mean_recall": 0.3833,
+      "hit_rate": 0.2917
     },
     "@3": {
-      "mean_recall": 0.9286,
-      "hit_rate": 0.9286
+      "mean_recall": 0.7181,
+      "hit_rate": 0.625
     },
     "@5": {
-      "mean_recall": 1.0,
-      "hit_rate": 1.0
+      "mean_recall": 0.7681,
+      "hit_rate": 0.6667
+    }
+  },
+  "by_suite": {
+    "core": {
+      "n_cases": 14,
+      "@1": {
+        "mean_recall": 0.5357,
+        "hit_rate": 0.5
+      },
+      "@3": {
+        "mean_recall": 0.9286,
+        "hit_rate": 0.9286
+      },
+      "@5": {
+        "mean_recall": 1.0,
+        "hit_rate": 1.0
+      }
+    },
+    "hard": {
+      "n_cases": 10,
+      "@1": {
+        "mean_recall": 0.17,
+        "hit_rate": 0.0
+      },
+      "@3": {
+        "mean_recall": 0.4233,
+        "hit_rate": 0.2
+      },
+      "@5": {
+        "mean_recall": 0.4433,
+        "hit_rate": 0.2
+      }
     }
   },
   "cases": [
     {
       "id": "01_dict_json",
       "difficulty": "easy",
+      "suite": "core",
       "expected": [
         "Changes to `pydantic.BaseModel`"
       ],
@@ -77,6 +110,7 @@
     {
       "id": "02_parse_obj_raw",
       "difficulty": "easy",
+      "suite": "core",
       "expected": [
         "Changes to `pydantic.BaseModel`"
       ],
@@ -125,6 +159,7 @@
     {
       "id": "03_validator",
       "difficulty": "easy",
+      "suite": "core",
       "expected": [
         "`@validator` and `@root_validator` are deprecated"
       ],
@@ -173,6 +208,7 @@
     {
       "id": "04_validator_pre_always",
       "difficulty": "medium",
+      "suite": "core",
       "expected": [
         "`@validator` and `@root_validator` are deprecated"
       ],
@@ -221,6 +257,7 @@
     {
       "id": "05_root_validator",
       "difficulty": "medium",
+      "suite": "core",
       "expected": [
         "`@validator` and `@root_validator` are deprecated"
       ],
@@ -269,6 +306,7 @@
     {
       "id": "06_orm_mode_config",
       "difficulty": "medium",
+      "suite": "core",
       "expected": [
         "Changes to config",
         "Changes to `pydantic.BaseModel`"
@@ -319,6 +357,7 @@
     {
       "id": "07_optional_implicit_default",
       "difficulty": "medium",
+      "suite": "core",
       "expected": [
         "Required, optional, and nullable fields"
       ],
@@ -367,6 +406,7 @@
     {
       "id": "08_field_regex_min_items",
       "difficulty": "easy",
+      "suite": "core",
       "expected": [
         "Changes to `pydantic.Field`"
       ],
@@ -415,6 +455,7 @@
     {
       "id": "09_custom_root",
       "difficulty": "hard",
+      "suite": "core",
       "expected": [
         "Changes to `pydantic.BaseModel`"
       ],
@@ -463,6 +504,7 @@
     {
       "id": "10_parse_obj_as",
       "difficulty": "medium",
+      "suite": "core",
       "expected": [
         "Introduction of `TypeAdapter`"
       ],
@@ -511,6 +553,7 @@
     {
       "id": "11_copy_schema",
       "difficulty": "easy",
+      "suite": "core",
       "expected": [
         "Changes to `pydantic.BaseModel`"
       ],
@@ -559,6 +602,7 @@
     {
       "id": "12_extra_forbid_frozen",
       "difficulty": "medium",
+      "suite": "core",
       "expected": [
         "Changes to config"
       ],
@@ -607,6 +651,7 @@
     {
       "id": "13_generic_model",
       "difficulty": "hard",
+      "suite": "core",
       "expected": [
         "Changes to `pydantic.generics.GenericModel`"
       ],
@@ -655,6 +700,7 @@
     {
       "id": "14_forward_refs",
       "difficulty": "easy",
+      "suite": "core",
       "expected": [
         "Changes to `pydantic.BaseModel`"
       ],
@@ -699,6 +745,527 @@
         "Changes to `pydantic.BaseModel`"
       ],
       "missed": []
+    },
+    {
+      "id": "15_union_smart_mode",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Unions",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 16.0039
+        },
+        {
+          "rank": 2,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 14.8266
+        },
+        {
+          "rank": 3,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 14.8156
+        },
+        {
+          "rank": 4,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 12.8696
+        },
+        {
+          "rank": 5,
+          "id": "c33-deprecated-and-moved-in-pydantic-v2",
+          "title": "Deprecated and moved in Pydantic V2",
+          "score": 10.4699
+        }
+      ],
+      "recall": {
+        "@1": 0.5,
+        "@3": 0.5,
+        "@5": 0.5
+      },
+      "found": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": [
+        "Unions"
+      ]
+    },
+    {
+      "id": "16_float_to_int",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Type conversion from floats to integers",
+        "`@validator` and `@root_validator` are deprecated",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 12.8276
+        },
+        {
+          "rank": 2,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 12.7213
+        },
+        {
+          "rank": 3,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 11.9966
+        },
+        {
+          "rank": 4,
+          "id": "c33-deprecated-and-moved-in-pydantic-v2",
+          "title": "Deprecated and moved in Pydantic V2",
+          "score": 9.3829
+        },
+        {
+          "rank": 5,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 9.3255
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 0.3333333333333333,
+        "@5": 0.3333333333333333
+      },
+      "found": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": [
+        "Type conversion from floats to integers",
+        "`@validator` and `@root_validator` are deprecated"
+      ]
+    },
+    {
+      "id": "17_number_to_str",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Validator behavior changes",
+        "Changes to config"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 26.0276
+        },
+        {
+          "rank": 2,
+          "id": "c14-validator-behavior-changes",
+          "title": "Migration guide > Changes to validators > Validator behavior changes",
+          "score": 9.2986
+        },
+        {
+          "rank": 3,
+          "id": "c12-changes-to-validator-s-allowed-signatures",
+          "title": "Migration guide > Changes to validators > Changes to `@validator`'s allowed signatures",
+          "score": 8.4192
+        },
+        {
+          "rank": 4,
+          "id": "c22-type-conversion-from-floats-to-integers",
+          "title": "Migration guide > Type conversion from floats to integers",
+          "score": 7.1882
+        },
+        {
+          "rank": 5,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 7.0103
+        }
+      ],
+      "recall": {
+        "@1": 0.5,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Validator behavior changes",
+        "Changes to config"
+      ],
+      "missed": []
+    },
+    {
+      "id": "18_model_dict_equality",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c20-required-optional-and-nullable-fields",
+          "title": "Migration guide > Changes to Handling of Standard Types > Required, optional, and nullable fields",
+          "score": 9.2944
+        },
+        {
+          "rank": 2,
+          "id": "c14-validator-behavior-changes",
+          "title": "Migration guide > Changes to validators > Validator behavior changes",
+          "score": 9.1716
+        },
+        {
+          "rank": 3,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 8.863
+        },
+        {
+          "rank": 4,
+          "id": "c11-validator-and-root-validator-are-deprecated",
+          "title": "Migration guide > Changes to validators > `@validator` and `@root_validator` are deprecated",
+          "score": 8.8327
+        },
+        {
+          "rank": 5,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 8.7317
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0
+      },
+      "found": [],
+      "missed": [
+        "Changes to `pydantic.BaseModel`"
+      ]
+    },
+    {
+      "id": "19_url_not_str",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Url and Dsn types in `pydantic.networks` no longer inherit from `str`",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 16.7874
+        },
+        {
+          "rank": 2,
+          "id": "c28-url-and-dsn-types-in-pydantic-networks-no-longer",
+          "title": "Migration guide > Url and Dsn types in `pydantic.networks` no longer inherit from `str`",
+          "score": 14.4001
+        },
+        {
+          "rank": 3,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 13.635
+        },
+        {
+          "rank": 4,
+          "id": "c22-type-conversion-from-floats-to-integers",
+          "title": "Migration guide > Type conversion from floats to integers",
+          "score": 7.6974
+        },
+        {
+          "rank": 5,
+          "id": "c14-validator-behavior-changes",
+          "title": "Migration guide > Changes to validators > Validator behavior changes",
+          "score": 7.4333
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 1.0,
+        "@5": 1.0
+      },
+      "found": [
+        "Url and Dsn types in `pydantic.networks` no longer inherit from `str`",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": []
+    },
+    {
+      "id": "20_validator_typeerror",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "`TypeError` is no longer converted to `ValidationError` in validators",
+        "`@validator` and `@root_validator` are deprecated",
+        "Changes to `@validator`'s allowed signatures"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 20.4001
+        },
+        {
+          "rank": 2,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 20.1321
+        },
+        {
+          "rank": 3,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 14.4733
+        },
+        {
+          "rank": 4,
+          "id": "c07-changes-to-pydantic-generics-genericmodel",
+          "title": "Migration guide > Changes to `pydantic.generics.GenericModel`",
+          "score": 13.0311
+        },
+        {
+          "rank": 5,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 12.0221
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0
+      },
+      "found": [],
+      "missed": [
+        "`TypeError` is no longer converted to `ValidationError` in validators",
+        "`@validator` and `@root_validator` are deprecated",
+        "Changes to `@validator`'s allowed signatures"
+      ]
+    },
+    {
+      "id": "21_each_item_values",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "`@validator` and `@root_validator` are deprecated",
+        "Changes to `@validator`'s allowed signatures"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c11-validator-and-root-validator-are-deprecated",
+          "title": "Migration guide > Changes to validators > `@validator` and `@root_validator` are deprecated",
+          "score": 16.7261
+        },
+        {
+          "rank": 2,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 13.8756
+        },
+        {
+          "rank": 3,
+          "id": "c20-required-optional-and-nullable-fields",
+          "title": "Migration guide > Changes to Handling of Standard Types > Required, optional, and nullable fields",
+          "score": 10.5129
+        },
+        {
+          "rank": 4,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 10.2753
+        },
+        {
+          "rank": 5,
+          "id": "c13-typeerror-is-no-longer-converted-to-validationer",
+          "title": "Migration guide > Changes to validators > `TypeError` is no longer converted to `ValidationError` in validators",
+          "score": 10.1292
+        }
+      ],
+      "recall": {
+        "@1": 0.5,
+        "@3": 0.5,
+        "@5": 0.5
+      },
+      "found": [
+        "`@validator` and `@root_validator` are deprecated"
+      ],
+      "missed": [
+        "Changes to `@validator`'s allowed signatures"
+      ]
+    },
+    {
+      "id": "22_nested_subclass_dump",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 10.1126
+        },
+        {
+          "rank": 2,
+          "id": "c13-typeerror-is-no-longer-converted-to-validationer",
+          "title": "Migration guide > Changes to validators > `TypeError` is no longer converted to `ValidationError` in validators",
+          "score": 7.7089
+        },
+        {
+          "rank": 3,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 7.6819
+        },
+        {
+          "rank": 4,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 7.6623
+        },
+        {
+          "rank": 5,
+          "id": "c23-introduction-of-typeadapter",
+          "title": "Migration guide > Introduction of `TypeAdapter`",
+          "score": 7.4011
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 0.0,
+        "@5": 0.0
+      },
+      "found": [],
+      "missed": [
+        "Changes to `pydantic.BaseModel`"
+      ]
+    },
+    {
+      "id": "23_dict_from_pairs",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Dicts",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 12.4153
+        },
+        {
+          "rank": 2,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 10.5897
+        },
+        {
+          "rank": 3,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 9.5121
+        },
+        {
+          "rank": 4,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 8.7257
+        },
+        {
+          "rank": 5,
+          "id": "c17-input-types-are-not-preserved",
+          "title": "Migration guide > Input types are not preserved",
+          "score": 8.6376
+        }
+      ],
+      "recall": {
+        "@1": 0.0,
+        "@3": 0.5,
+        "@5": 0.5
+      },
+      "found": [
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "missed": [
+        "Dicts"
+      ]
+    },
+    {
+      "id": "24_service_module",
+      "difficulty": "hard",
+      "suite": "hard",
+      "expected": [
+        "Changes to config",
+        "`@validator` and `@root_validator` are deprecated",
+        "Changes to `pydantic.Field`",
+        "Required, optional, and nullable fields",
+        "Changes to `pydantic.BaseModel`"
+      ],
+      "retrieved": [
+        {
+          "rank": 1,
+          "id": "c10-changes-to-config",
+          "title": "Migration guide > Changes to config",
+          "score": 49.7011
+        },
+        {
+          "rank": 2,
+          "id": "c08-changes-to-pydantic-field",
+          "title": "Migration guide > Changes to `pydantic.Field`",
+          "score": 37.6231
+        },
+        {
+          "rank": 3,
+          "id": "c34-removed-in-pydantic-v2",
+          "title": "Removed in Pydantic V2",
+          "score": 36.5626
+        },
+        {
+          "rank": 4,
+          "id": "c06-changes-to-pydantic-basemodel",
+          "title": "Migration guide > Changes to `pydantic.BaseModel`",
+          "score": 32.4158
+        },
+        {
+          "rank": 5,
+          "id": "c33-deprecated-and-moved-in-pydantic-v2",
+          "title": "Deprecated and moved in Pydantic V2",
+          "score": 25.989
+        }
+      ],
+      "recall": {
+        "@1": 0.2,
+        "@3": 0.4,
+        "@5": 0.6
+      },
+      "found": [
+        "Changes to config",
+        "Changes to `pydantic.Field`"
+      ],
+      "missed": [
+        "`@validator` and `@root_validator` are deprecated",
+        "Required, optional, and nullable fields",
+        "Changes to `pydantic.BaseModel`"
+      ]
     }
   ]
 }

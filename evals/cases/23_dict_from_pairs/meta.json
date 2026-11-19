@@ -1,0 +1,14 @@
+{
+  "id": "23_dict_from_pairs",
+  "patterns": [
+    "Dict field no longer accepts a list of pairs",
+    ".json() -> .model_dump_json()"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "v1 converted [('A', 'b')] to {'A': 'b'}; v2 rejects it.",
+  "guide_sections": [
+    "Dicts",
+    "Changes to `pydantic.BaseModel`"
+  ]
+}

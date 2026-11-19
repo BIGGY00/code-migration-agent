@@ -1,0 +1,15 @@
+{
+  "id": "19_url_not_str",
+  "patterns": [
+    "HttpUrl no longer subclasses str",
+    "str(url) adds a trailing slash",
+    "BaseModel.parse_raw"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "url + path raises TypeError; the obvious str(url) + path fix gives '//v1' because v2 appends '/'.",
+  "guide_sections": [
+    "Url and Dsn types in `pydantic.networks` no longer inherit from `str`",
+    "Changes to `pydantic.BaseModel`"
+  ]
+}

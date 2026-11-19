@@ -1,17 +1,29 @@
 {
-  "generated_at": "2026-11-19T17:54:55+00:00",
+  "generated_at": "2026-11-19T18:06:26+00:00",
   "mode": "single_shot",
   "model": "anthropic/claude-haiku-5-5",
-  "total_cases": 14,
-  "passed_cases": 14,
-  "pass_rate": 1.0,
+  "total_cases": 24,
+  "passed_cases": 20,
+  "pass_rate": 0.8333,
   "avg_rounds_to_pass": 1.0,
   "avg_rounds_all": 1.0,
-  "total_input_tokens": 4751,
-  "total_output_tokens": 3252,
-  "total_cost_usd": 0.002101,
-  "avg_cost_usd": 0.00015,
-  "avg_latency_s": 1.784,
+  "total_input_tokens": 9031,
+  "total_output_tokens": 9725,
+  "total_cost_usd": 0.005766,
+  "avg_cost_usd": 0.00024,
+  "avg_latency_s": 2.478,
+  "by_suite": {
+    "core": {
+      "total_cases": 14,
+      "passed_cases": 14,
+      "total_cost_usd": 0.002146
+    },
+    "hard": {
+      "total_cases": 10,
+      "passed_cases": 6,
+      "total_cost_usd": 0.00362
+    }
+  },
   "cases": [
     {
       "case_id": "01_dict_json",
@@ -23,9 +35,10 @@
       "input_tokens": 343,
       "output_tokens": 196,
       "cost_usd": 0.0001323,
-      "latency_s": 2.1,
+      "latency_s": 2.233,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "02_parse_obj_raw",
@@ -35,11 +48,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 340,
-      "output_tokens": 172,
-      "cost_usd": 0.00012,
-      "latency_s": 1.489,
+      "output_tokens": 185,
+      "cost_usd": 0.00012649999999999998,
+      "latency_s": 1.492,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "03_validator",
@@ -49,11 +63,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 337,
-      "output_tokens": 171,
-      "cost_usd": 0.0001192,
-      "latency_s": 1.443,
+      "output_tokens": 173,
+      "cost_usd": 0.0001202,
+      "latency_s": 1.418,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "04_validator_pre_always",
@@ -63,11 +78,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 375,
-      "output_tokens": 603,
-      "cost_usd": 0.000339,
-      "latency_s": 3.368,
+      "output_tokens": 466,
+      "cost_usd": 0.00027049999999999996,
+      "latency_s": 3.06,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "05_root_validator",
@@ -77,11 +93,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 380,
-      "output_tokens": 356,
-      "cost_usd": 0.000216,
-      "latency_s": 2.255,
+      "output_tokens": 291,
+      "cost_usd": 0.0001835,
+      "latency_s": 1.952,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "06_orm_mode_config",
@@ -91,11 +108,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 350,
-      "output_tokens": 308,
-      "cost_usd": 0.00018899999999999999,
-      "latency_s": 2.055,
+      "output_tokens": 368,
+      "cost_usd": 0.000219,
+      "latency_s": 2.317,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "07_optional_implicit_default",
@@ -105,11 +123,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 327,
-      "output_tokens": 199,
-      "cost_usd": 0.00013220000000000001,
-      "latency_s": 1.724,
+      "output_tokens": 164,
+      "cost_usd": 0.0001147,
+      "latency_s": 1.521,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "08_field_regex_min_items",
@@ -119,11 +138,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 326,
-      "output_tokens": 167,
-      "cost_usd": 0.0001161,
-      "latency_s": 1.507,
+      "output_tokens": 136,
+      "cost_usd": 0.0001006,
+      "latency_s": 1.273,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "09_custom_root",
@@ -133,11 +153,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 341,
-      "output_tokens": 220,
-      "cost_usd": 0.00014409999999999998,
-      "latency_s": 1.696,
+      "output_tokens": 324,
+      "cost_usd": 0.0001961,
+      "latency_s": 2.073,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "10_parse_obj_as",
@@ -147,11 +168,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 322,
-      "output_tokens": 198,
-      "cost_usd": 0.0001312,
-      "latency_s": 1.471,
+      "output_tokens": 272,
+      "cost_usd": 0.0001682,
+      "latency_s": 1.769,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "11_copy_schema",
@@ -161,11 +183,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 329,
-      "output_tokens": 138,
-      "cost_usd": 0.0001019,
-      "latency_s": 1.381,
+      "output_tokens": 161,
+      "cost_usd": 0.0001134,
+      "latency_s": 1.428,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "12_extra_forbid_frozen",
@@ -175,11 +198,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 310,
-      "output_tokens": 184,
-      "cost_usd": 0.000123,
-      "latency_s": 1.547,
+      "output_tokens": 180,
+      "cost_usd": 0.00012099999999999999,
+      "latency_s": 1.636,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "13_generic_model",
@@ -189,11 +213,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 339,
-      "output_tokens": 154,
-      "cost_usd": 0.0001109,
-      "latency_s": 1.376,
+      "output_tokens": 175,
+      "cost_usd": 0.0001214,
+      "latency_s": 1.467,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "14_forward_refs",
@@ -203,11 +228,162 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 332,
-      "output_tokens": 186,
-      "cost_usd": 0.0001262,
-      "latency_s": 1.558,
+      "output_tokens": 250,
+      "cost_usd": 0.0001582,
+      "latency_s": 1.802,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
+    },
+    {
+      "case_id": "15_union_smart_mode",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 424,
+      "output_tokens": 604,
+      "cost_usd": 0.00034439999999999997,
+      "latency_s": 3.45,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "16_float_to_int",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 360,
+      "output_tokens": 224,
+      "cost_usd": 0.000148,
+      "latency_s": 1.588,
+      "remaining_patterns": [],
+      "reason": "FAILED test_case.py::test_float_counts_are_truncated - pydantic_core._pydanti...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "17_number_to_str",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 356,
+      "output_tokens": 185,
+      "cost_usd": 0.0001281,
+      "latency_s": 1.565,
+      "remaining_patterns": [],
+      "reason": "FAILED test_case.py::test_numeric_sku_becomes_text - pydantic_core._pydantic_...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "18_model_dict_equality",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 415,
+      "output_tokens": 607,
+      "cost_usd": 0.00034499999999999993,
+      "latency_s": 3.013,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "19_url_not_str",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 435,
+      "output_tokens": 446,
+      "cost_usd": 0.0002665,
+      "latency_s": 2.454,
+      "remaining_patterns": [],
+      "reason": "FAILED test_case.py::test_endpoint_on_bare_host - AssertionError: assert 'htt...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "20_validator_typeerror",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 359,
+      "output_tokens": 394,
+      "cost_usd": 0.0002329,
+      "latency_s": 2.695,
+      "remaining_patterns": [],
+      "reason": "FAILED test_case.py::test_number_items_is_a_validation_error - TypeError: obj...",
+      "suite": "hard"
+    },
+    {
+      "case_id": "21_each_item_values",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 381,
+      "output_tokens": 992,
+      "cost_usd": 0.0005340999999999999,
+      "latency_s": 5.34,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "22_nested_subclass_dump",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 340,
+      "output_tokens": 482,
+      "cost_usd": 0.00027499999999999996,
+      "latency_s": 2.957,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "23_dict_from_pairs",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 372,
+      "output_tokens": 381,
+      "cost_usd": 0.0002277,
+      "latency_s": 2.231,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "24_service_module",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 838,
+      "output_tokens": 2069,
+      "cost_usd": 0.0011182999999999998,
+      "latency_s": 8.747,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
     }
   ]
 }

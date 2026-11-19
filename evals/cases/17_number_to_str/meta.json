@@ -1,0 +1,15 @@
+{
+  "id": "17_number_to_str",
+  "patterns": [
+    "str field no longer accepts ints (coerce_numbers_to_str)",
+    "class Config -> model_config",
+    "anystr_strip_whitespace -> str_strip_whitespace"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "v1 turned sku 10042 into '10042'; v2 rejects it unless coerce_numbers_to_str is set.",
+  "guide_sections": [
+    "Validator behavior changes",
+    "Changes to config"
+  ]
+}

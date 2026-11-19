@@ -1,0 +1,22 @@
+{
+  "id": "24_service_module",
+  "patterns": [
+    "class Config (populate_by_name, Extra.forbid, str_strip_whitespace)",
+    "json_encoders -> field_serializer",
+    "@root_validator(pre=True) -> @model_validator(mode='before')",
+    "@validator -> @field_validator",
+    "Field(regex=, max_items=)",
+    "Optional without default",
+    "parse_raw / dict / json / copy / schema"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "A realistic module with 8+ interacting v1 patterns, including implicit Optional defaults that tests rely on.",
+  "guide_sections": [
+    "Changes to config",
+    "`@validator` and `@root_validator` are deprecated",
+    "Changes to `pydantic.Field`",
+    "Required, optional, and nullable fields",
+    "Changes to `pydantic.BaseModel`"
+  ]
+}

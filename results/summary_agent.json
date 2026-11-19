@@ -1,17 +1,29 @@
 {
-  "generated_at": "2026-11-19T17:55:27+00:00",
+  "generated_at": "2026-11-19T18:07:45+00:00",
   "mode": "agent",
   "model": "anthropic/claude-haiku-5-5",
-  "total_cases": 14,
-  "passed_cases": 14,
+  "total_cases": 24,
+  "passed_cases": 24,
   "pass_rate": 1.0,
-  "avg_rounds_to_pass": 1.0,
-  "avg_rounds_all": 1.0,
-  "total_input_tokens": 51064,
-  "total_output_tokens": 2988,
-  "total_cost_usd": 0.0066,
-  "avg_cost_usd": 0.000471,
-  "avg_latency_s": 1.703,
+  "avg_rounds_to_pass": 1.29,
+  "avg_rounds_all": 1.29,
+  "total_input_tokens": 138925,
+  "total_output_tokens": 13045,
+  "total_cost_usd": 0.020415,
+  "avg_cost_usd": 0.000851,
+  "avg_latency_s": 3.186,
+  "by_suite": {
+    "core": {
+      "total_cases": 14,
+      "passed_cases": 14,
+      "total_cost_usd": 0.006521
+    },
+    "hard": {
+      "total_cases": 10,
+      "passed_cases": 10,
+      "total_cost_usd": 0.013894
+    }
+  },
   "cases": [
     {
       "case_id": "01_dict_json",
@@ -23,9 +35,10 @@
       "input_tokens": 3913,
       "output_tokens": 116,
       "cost_usd": 0.00044929999999999997,
-      "latency_s": 1.532,
+      "latency_s": 1.57,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "02_parse_obj_raw",
@@ -37,9 +50,10 @@
       "input_tokens": 4390,
       "output_tokens": 106,
       "cost_usd": 0.000492,
-      "latency_s": 1.262,
+      "latency_s": 1.131,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "03_validator",
@@ -51,9 +65,10 @@
       "input_tokens": 2093,
       "output_tokens": 114,
       "cost_usd": 0.00026629999999999997,
-      "latency_s": 1.292,
+      "latency_s": 1.308,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "04_validator_pre_always",
@@ -63,11 +78,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 2656,
-      "output_tokens": 446,
-      "cost_usd": 0.0004886000000000001,
-      "latency_s": 2.626,
+      "output_tokens": 421,
+      "cost_usd": 0.00047609999999999997,
+      "latency_s": 2.584,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "05_root_validator",
@@ -77,11 +93,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 4703,
-      "output_tokens": 529,
-      "cost_usd": 0.0007348,
-      "latency_s": 3.013,
+      "output_tokens": 479,
+      "cost_usd": 0.0007098,
+      "latency_s": 2.817,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "06_orm_mode_config",
@@ -91,11 +108,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 3963,
-      "output_tokens": 295,
-      "cost_usd": 0.0005438,
-      "latency_s": 1.949,
+      "output_tokens": 251,
+      "cost_usd": 0.0005218,
+      "latency_s": 1.69,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "07_optional_implicit_default",
@@ -105,11 +123,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 1860,
-      "output_tokens": 151,
-      "cost_usd": 0.0002615,
-      "latency_s": 1.554,
+      "output_tokens": 155,
+      "cost_usd": 0.0002635,
+      "latency_s": 1.455,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "08_field_regex_min_items",
@@ -119,11 +138,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 2112,
-      "output_tokens": 299,
-      "cost_usd": 0.0003607,
-      "latency_s": 2.052,
+      "output_tokens": 153,
+      "cost_usd": 0.0002877,
+      "latency_s": 1.355,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "09_custom_root",
@@ -133,11 +153,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 4404,
-      "output_tokens": 102,
-      "cost_usd": 0.0004914,
-      "latency_s": 1.233,
+      "output_tokens": 190,
+      "cost_usd": 0.0005354,
+      "latency_s": 1.562,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "10_parse_obj_as",
@@ -147,11 +168,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 3161,
-      "output_tokens": 249,
-      "cost_usd": 0.0004406,
-      "latency_s": 1.787,
+      "output_tokens": 229,
+      "cost_usd": 0.00043059999999999995,
+      "latency_s": 1.778,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "11_copy_schema",
@@ -161,11 +183,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 4457,
-      "output_tokens": 146,
-      "cost_usd": 0.0005187,
-      "latency_s": 1.345,
+      "output_tokens": 184,
+      "cost_usd": 0.0005377,
+      "latency_s": 1.55,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "12_extra_forbid_frozen",
@@ -175,11 +198,12 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 2209,
-      "output_tokens": 151,
-      "cost_usd": 0.0002964,
-      "latency_s": 1.404,
+      "output_tokens": 195,
+      "cost_usd": 0.0003184,
+      "latency_s": 1.555,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "13_generic_model",
@@ -191,9 +215,10 @@
       "input_tokens": 3749,
       "output_tokens": 102,
       "cost_usd": 0.0004259,
-      "latency_s": 1.241,
+      "latency_s": 1.218,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
     },
     {
       "case_id": "14_forward_refs",
@@ -203,11 +228,162 @@
       "rounds": 1,
       "model": "anthropic/claude-haiku-5-5",
       "input_tokens": 7394,
-      "output_tokens": 182,
-      "cost_usd": 0.0008304,
-      "latency_s": 1.559,
+      "output_tokens": 135,
+      "cost_usd": 0.0008068999999999999,
+      "latency_s": 1.418,
       "remaining_patterns": [],
-      "reason": null
+      "reason": null,
+      "suite": "core"
+    },
+    {
+      "case_id": "15_union_smart_mode",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 2,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 9721,
+      "output_tokens": 913,
+      "cost_usd": 0.0014286,
+      "latency_s": 5.224,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "16_float_to_int",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 2,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 10128,
+      "output_tokens": 754,
+      "cost_usd": 0.0013898,
+      "latency_s": 4.728,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "17_number_to_str",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 2,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 6502,
+      "output_tokens": 379,
+      "cost_usd": 0.0008397000000000001,
+      "latency_s": 2.87,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "18_model_dict_equality",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 3966,
+      "output_tokens": 404,
+      "cost_usd": 0.0005985999999999999,
+      "latency_s": 2.224,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "19_url_not_str",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 2,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 16586,
+      "output_tokens": 1410,
+      "cost_usd": 0.0023635999999999996,
+      "latency_s": 6.829,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "20_validator_typeerror",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 2,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 10170,
+      "output_tokens": 1085,
+      "cost_usd": 0.0015594999999999997,
+      "latency_s": 5.91,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "21_each_item_values",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 2144,
+      "output_tokens": 718,
+      "cost_usd": 0.0005734,
+      "latency_s": 3.498,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "22_nested_subclass_dump",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 2,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 12388,
+      "output_tokens": 564,
+      "cost_usd": 0.0015207999999999999,
+      "latency_s": 3.945,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "23_dict_from_pairs",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 3909,
+      "output_tokens": 605,
+      "cost_usd": 0.0006933999999999999,
+      "latency_s": 3.385,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
+    },
+    {
+      "case_id": "24_service_module",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 2,
+      "model": "anthropic/claude-haiku-5-5",
+      "input_tokens": 12347,
+      "output_tokens": 3383,
+      "cost_usd": 0.0029262,
+      "latency_s": 14.866,
+      "remaining_patterns": [],
+      "reason": null,
+      "suite": "hard"
     }
   ]
 }

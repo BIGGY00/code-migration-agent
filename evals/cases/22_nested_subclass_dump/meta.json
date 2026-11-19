@@ -1,0 +1,13 @@
+{
+  "id": "22_nested_subclass_dump",
+  "patterns": [
+    "v2 dumps nested models by their annotated type, dropping subclass fields",
+    ".dict() -> .model_dump()"
+  ],
+  "difficulty": "hard",
+  "suite": "hard",
+  "behaviour_change": "After renaming .dict(), Click events lose x and y in the export unless serialize_as_any is used.",
+  "guide_sections": [
+    "Changes to `pydantic.BaseModel`"
+  ]
+}
