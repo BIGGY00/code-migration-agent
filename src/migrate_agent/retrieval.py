@@ -237,3 +237,27 @@ def make_retriever(kind: str = "bm25", **kwargs) -> BM25Retriever | EmbeddingRet
     if kind == "embedding":
         return EmbeddingRetriever(**kwargs)
     raise ValueError(f"unknown retriever {kind!r} (use 'bm25' or 'embedding')")
+
+
+def multi_search(retriever, queries: list[str], k: int = 3, depth: int = 5) -> list[Hit]:
+    """Search several queries and merge the results round-robin.
+
+    BM25 scores from different queries are not comparable, so instead of
+    sorting by score we take each query's best chunk first, then each query's
+    second best, and so on, skipping duplicates. A file with three different v1
+    patterns therefore gets one relevant section per pattern before any
+    pattern gets two.
+    """
+    if not queries:
+        return []
+    ranked = [retriever.search(q, k=depth) for q in queries]
+    out: list[Hit] = []
+    seen: set[str] = set()
+    for rank in range(depth):
+        for hits in ranked:
+            if rank < len(hits) and hits[rank].chunk.id not in seen:
+                seen.add(hits[rank].chunk.id)
+                out.append(hits[rank])
+                if len(out) == k:
+                    return out
+    return out

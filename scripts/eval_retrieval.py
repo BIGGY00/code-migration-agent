@@ -1,7 +1,11 @@
 """Measure how well retrieval finds the right migration-guide section per case.
 
-For each eval case the query is the raw ``before.py`` source (no hand-written
-hints), which is what the agent sees. A case's expected sections are the
+Two query modes:
+
+* ``raw`` (default): the raw ``before.py`` source, no hand-written hints.
+* ``scan``: one query per v1 pattern found by ``migrate_agent.scan``, results
+  merged round-robin (``retrieval.multi_search``). This is what the agent uses.
+ A case's expected sections are the
 ``guide_sections`` in its ``meta.json`` (real headings from the guide).
 
     recall@k = expected sections found in the top-k chunks / expected sections
@@ -10,7 +14,8 @@ Reported per case and as the mean over cases. ``hit@k`` is the share of cases
 where *every* expected section was in the top k.
 
 Usage:
-    python scripts/eval_retrieval.py                 # BM25, no API cost
+    python scripts/eval_retrieval.py                 # BM25, raw-file query, no API cost
+    python scripts/eval_retrieval.py --query scan    # BM25, per-pattern queries from the static scan
     python scripts/eval_retrieval.py --embeddings    # needs MIGRATE_AGENT_EMBED_MODEL, costs API calls
 """
 
@@ -26,7 +31,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from migrate_agent.harness import load_cases  # noqa: E402
-from migrate_agent.retrieval import GUIDE_PATH, guide_sha256, load_chunks, make_retriever  # noqa: E402
+from migrate_agent.retrieval import GUIDE_PATH, guide_sha256, load_chunks, make_retriever, multi_search  # noqa: E402
+from migrate_agent.scan import queries as scan_queries  # noqa: E402
+from migrate_agent.scan import scan  # noqa: E402
 
 KS = (1, 3, 5)
 
@@ -40,11 +47,14 @@ def main() -> int:
     ap.add_argument("--k", type=int, default=3, help="headline k for recall@k (default 3)")
     ap.add_argument("--embeddings", action="store_true", help="use embedding retrieval instead of BM25")
     ap.add_argument("--embed-model", default=None, help="LiteLLM embedding model id (default: $MIGRATE_AGENT_EMBED_MODEL)")
+    ap.add_argument("--query", choices=["raw", "scan"], default="raw", help="query mode (default raw)")
     ap.add_argument("--out", type=Path, default=None, help="output JSON path")
     args = ap.parse_args()
 
     kind = "embedding" if args.embeddings else "bm25"
-    out = args.out or ROOT / "results" / ("retrieval.json" if kind == "bm25" else "retrieval_embedding.json")
+    suffix = "" if kind == "bm25" else "_embedding"
+    suffix += "" if args.query == "raw" else f"_{args.query}"
+    out = args.out or ROOT / "results" / f"retrieval{suffix}.json"
     chunks = load_chunks()
     kwargs = {"chunks": chunks}
     if kind == "embedding" and args.embed_model:
@@ -58,7 +68,11 @@ def main() -> int:
         if not case.guide_sections:
             print(f"error: {case.id} has no guide_sections in meta.json", file=sys.stderr)
             return 1
-        hits = retriever.search(case.before.read_text(), k=depth)
+        source = case.before.read_text()
+        if args.query == "scan":
+            hits = multi_search(retriever, scan_queries(scan(source)), k=depth, depth=depth)
+        else:
+            hits = retriever.search(source, k=depth)
         headings = [h.chunk.heading for h in hits]
         top = headings[: args.k]
         rows.append(
@@ -89,7 +103,7 @@ def main() -> int:
         "retriever": kind,
         "model": getattr(retriever, "model", None),
         "cost_usd": round(getattr(retriever, "cost_usd", 0.0), 6),
-        "query": "raw before.py source",
+        "query": "raw before.py source" if args.query == "raw" else "per-pattern queries from scan.py, merged round-robin",
         "guide": {"path": str(GUIDE_PATH.relative_to(ROOT)), "sha256": guide_sha256(), "chunks": len(chunks)},
         "headline_k": args.k,
         "n_cases": n,
@@ -100,7 +114,7 @@ def main() -> int:
     out.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n")
 
     k = args.k
-    print(f"retriever={kind} | {len(chunks)} chunks | {n} cases | query = raw before.py\n")
+    print(f"retriever={kind} | {len(chunks)} chunks | {n} cases | query = {args.query}\n")
     print(f"{'case':30} {'diff':7} {f'R@{k}':>5}  top-{k} headings (✓ = expected)")
     for r in rows:
         marks = [

@@ -38,16 +38,20 @@ def default_model() -> str:
 def complete(
     messages: list[dict],
     model: str | None = None,
-    temperature: float = 0.0,
-    max_tokens: int = 4096,
+    temperature: float | None = None,
+    max_tokens: int = 16000,
 ) -> LLMResult:
+    """One chat completion. ``temperature`` is only sent when given: current Claude
+    models reject non-default sampling values, and they think before answering,
+    so ``max_tokens`` must leave room for that as well as the full file."""
     model = model or default_model()
+    kwargs = {} if temperature is None else {"temperature": temperature}
     start = time.perf_counter()
     resp = litellm.completion(
         model=model,
         messages=messages,
-        temperature=temperature,
         max_tokens=max_tokens,
+        **kwargs,
     )
     latency = time.perf_counter() - start
     usage = getattr(resp, "usage", None)

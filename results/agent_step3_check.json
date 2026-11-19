@@ -1,0 +1,65 @@
+{
+  "what": "Step 3 end-to-end check: agent loop with a real model on one easy and two hard cases (not the full eval; see step 4)",
+  "date": "2026-11-20",
+  "model": "anthropic/claude-haiku-5-5",
+  "max_rounds": 3,
+  "cases": [
+    {
+      "case_id": "01_dict_json",
+      "round": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "retrieved": [
+        "c06-changes-to-pydantic-basemodel",
+        "c10-changes-to-config",
+        "c16-validate-arguments-has-been-renamed-to-validate-"
+      ],
+      "input_tokens": 3913,
+      "output_tokens": 183,
+      "cost_usd": 0.00048279999999999997,
+      "llm_latency_s": 1.518,
+      "test_seconds": 0.238,
+      "passed": true,
+      "difficulty": "easy",
+      "log": "20261120-003024-01_dict_json.jsonl"
+    },
+    {
+      "case_id": "09_custom_root",
+      "round": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "retrieved": [
+        "c23-introduction-of-typeadapter",
+        "c06-changes-to-pydantic-basemodel",
+        "c33-deprecated-and-moved-in-pydantic-v2"
+      ],
+      "input_tokens": 4404,
+      "output_tokens": 174,
+      "cost_usd": 0.0005273999999999999,
+      "llm_latency_s": 1.586,
+      "test_seconds": 0.211,
+      "passed": true,
+      "difficulty": "hard",
+      "log": "20261120-003028-09_custom_root.jsonl"
+    },
+    {
+      "case_id": "13_generic_model",
+      "round": 1,
+      "model": "anthropic/claude-haiku-5-5",
+      "retrieved": [
+        "c07-changes-to-pydantic-generics-genericmodel",
+        "c06-changes-to-pydantic-basemodel",
+        "c08-changes-to-pydantic-field"
+      ],
+      "input_tokens": 3749,
+      "output_tokens": 102,
+      "cost_usd": 0.0004259,
+      "llm_latency_s": 1.346,
+      "test_seconds": 0.207,
+      "passed": true,
+      "difficulty": "hard",
+      "log": "20261120-003032-13_generic_model.jsonl"
+    }
+  ],
+  "passed": 3,
+  "n": 3,
+  "total_cost_usd": 0.001436
+}
