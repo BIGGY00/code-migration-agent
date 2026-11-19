@@ -4,6 +4,7 @@ Modes:
   * ``bump_pydantic``: rule-based baseline (`bump-pydantic target.py`), $0 API cost.
   * ``single_shot``:   one LLM call with raw file only (no scan, no RAG, no test loop).
   * ``agent``:         scan -> BM25 retrieval -> patch -> pytest -> fix loop.
+  * ``agent_no_rag``:  ablation: same scan and pytest fix loop, no guide retrieval.
 
 Usage:
     python scripts/run_eval.py --mode bump_pydantic
@@ -258,8 +259,9 @@ def run_agent_case(
     complete_fn: Callable[..., llm.LLMResult] | None = None,
     log_path: Path | None = None,
     out_dir: Path | None = None,
+    use_retrieval: bool = True,
 ) -> CaseEvalResult:
-    """Full RAG + static scan + test-driven fix loop."""
+    """Full RAG + static scan + test-driven fix loop (``use_retrieval=False`` for the ablation)."""
     res = migrate(
         case.before.read_text(),
         case=case,
@@ -269,6 +271,7 @@ def run_agent_case(
         retriever=retriever,
         complete_fn=complete_fn,
         log_path=log_path,
+        use_retrieval=use_retrieval,
     )
     _save_source(out_dir, case, res.source)
     tin, tout = res.tokens
@@ -329,7 +332,7 @@ def summarize(mode: str, model_label: str, results: list[CaseEvalResult]) -> dic
 
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--mode", required=True, choices=["agent", "single_shot", "bump_pydantic"])
+    ap.add_argument("--mode", required=True, choices=["agent", "agent_no_rag", "single_shot", "bump_pydantic"])
     ap.add_argument("--model", default=None, help="LiteLLM model id (default: $MIGRATE_AGENT_MODEL)")
     ap.add_argument("--max-rounds", type=int, default=3)
     ap.add_argument("--k", type=int, default=3)
@@ -369,6 +372,7 @@ def main(argv: list[str] | None = None) -> int:
                 retriever=retriever,
                 log_path=log_path,
                 out_dir=out_dir,
+                use_retrieval=args.mode == "agent",
             )
         results.append(res)
         verdict = "PASS" if res.passed else res.status.upper()

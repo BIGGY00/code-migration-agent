@@ -21,6 +21,7 @@ MODES = [
     ("bump_pydantic", "Rule-based (`bump-pydantic`)"),
     ("single_shot", "Single-shot LLM (no RAG / no loop)"),
     ("agent", "Agent (scan + BM25 RAG + pytest loop)"),
+    ("agent_no_rag", "Ablation: agent without retrieval (scan + pytest loop)"),
 ]
 
 START_MARKER = "<!-- RESULTS_START -->"
@@ -70,8 +71,8 @@ def format_report(results_dir: Path = RESULTS_DIR) -> str:
             "<details>",
             f"<summary>Per-case breakdown across all {len(case_ids)} eval cases</summary>",
             "",
-            "| Case | Set | Difficulty | `bump-pydantic` | `single_shot` | `agent` |",
-            "|---|---|---|---|---|---|",
+            "| Case | Set | Difficulty | " + " | ".join(f"`{m}`" for m, _ in MODES) + " |",
+            "|---|---|---|" + "---|" * len(MODES),
         ])
         for cid in case_ids:
             first = available[0]["cases"][case_ids.index(cid)]
@@ -85,7 +86,7 @@ def format_report(results_dir: Path = RESULTS_DIR) -> str:
                     cells.append("PASS" if mode == "bump_pydantic" else f"PASS (r{row['rounds']})")
                 else:
                     cells.append(f"FAIL ({row['status']})")
-            lines.append(f"| `{cid}` | {suite} | {diff} | {cells[0]} | {cells[1]} | {cells[2]} |")
+            lines.append(f"| `{cid}` | {suite} | {diff} | " + " | ".join(cells) + " |")
         lines.extend(["", "</details>"])
 
     return "\n".join(lines)

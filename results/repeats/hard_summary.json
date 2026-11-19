@@ -187,6 +187,88 @@
         },
         "failed": []
       }
+    ],
+    "agent_no_rag": [
+      {
+        "run": 1,
+        "file": "results/summary_agent_no_rag.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.005264,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 1,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": []
+      },
+      {
+        "run": 2,
+        "file": "results/repeats/hard_agent_no_rag_run2.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.004963,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 2,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": []
+      },
+      {
+        "run": 3,
+        "file": "results/repeats/hard_agent_no_rag_run3.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.005456,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 2,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": []
+      },
+      {
+        "run": 4,
+        "file": "results/repeats/hard_agent_no_rag_run4.json",
+        "passed": 10,
+        "n": 10,
+        "cost_usd": 0.006087,
+        "rounds": {
+          "15_union_smart_mode": 1,
+          "16_float_to_int": 2,
+          "17_number_to_str": 2,
+          "18_model_dict_equality": 1,
+          "19_url_not_str": 2,
+          "20_validator_typeerror": 2,
+          "21_each_item_values": 1,
+          "22_nested_subclass_dump": 2,
+          "23_dict_from_pairs": 1,
+          "24_service_module": 1
+        },
+        "failed": []
+      }
     ]
   }
 }

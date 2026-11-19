@@ -28,7 +28,7 @@ Goal: public repo with real results within ~1 week. Tick each box when its "Done
 - [x] `tests/test_eval.py` unit tests passing
 - [x] Done when: `single_shot` and `agent` modes run on all 14 cases with `anthropic/claude-haiku-5-5` and `README.md` shows all three modes — **2026-11-20: bump-pydantic 4/14, single_shot 14/14 ($0.00210), agent 14/14 ($0.00660, all in round 1). The eval set is saturated; the agent shows no accuracy gain yet.**
 - [x] Follow-up: 10 hard cases (15–24, silent v2 behaviour changes + one 80-line multi-pattern module), 24/24 valid — **2026-11-20, 24 cases: bump-pydantic 4/24, single_shot 20/24, agent 24/24. Hard set over 4 runs: single_shot 6, 5, 5, 6 /10; agent 10/10 every run** (`results/repeats/hard_summary.json`)
-- [ ] Next experiment: ablation (test loop without retrieval) to measure what RAG adds
+- [x] Ablation `--mode agent_no_rag` (scan + test loop, no retrieval) — **2026-11-20: 24/24, $0.0072; hard set 10/10 in 4 of 4 runs ($0.0218 for 4 runs vs $0.0533 with retrieval). The gain comes from the test loop; retrieval added cost, not accuracy.**
 
 ## Step 5 — Packaging, CI & Ship (Docker + CI + README ready; GitHub push pending Big's review)
 - [x] `Dockerfile` & `.dockerignore` (slim Python 3.11 image, runs `validate_cases.py && pytest`)

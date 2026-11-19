@@ -2,11 +2,11 @@
 
 An LLM agent that migrates Python code from **Pydantic v1 to v2**: it finds v1 patterns with a static scan, retrieves matching sections of the official migration guide (BM25 RAG), patches the code, runs `pytest` with deprecation warnings turned into errors, and feeds failures back into a bounded fix loop. An evaluation harness benchmarks the agent against a single-shot LLM call and the rule-based `bump-pydantic` baseline.
 
-> Status: **Steps 1–4 done, step 5 (publish) pending.** On 24 eval cases with `anthropic/claude-haiku-5-5` (2026-11-20): the agent passed 24/24, a single LLM call 20/24, and `bump-pydantic` 4/24. The gap is entirely on the 10 *hard* cases: agent 10/10 in 4 out of 4 runs, single call 5–6/10.
+> Status: **Steps 1–4 done, step 5 (publish) pending.** On 24 eval cases with `anthropic/claude-haiku-5-5` (2026-11-20): the agent passed 24/24, a single LLM call 20/24, and `bump-pydantic` 4/24. The gap is entirely on the 10 *hard* cases. An ablation shows the **test-driven fix loop** produces it: the agent without retrieval also passed 10/10 in 4 of 4 runs, at about 40% of the cost.
 
 ## Why this exists
 
-Version migrations are slow, file-by-file work. Rule-based AST tools handle mechanical syntax changes well (`@validator` → `@field_validator`, `class Config` → `ConfigDict`), while a single LLM call has no way to check its own output. This project tests one claim with real numbers: *a retrieval-grounded, test-driven agent loop migrates more code correctly than a single LLM call or a rule-based tool.*
+Version migrations are slow, file-by-file work. Rule-based AST tools handle mechanical syntax changes well (`@validator` → `@field_validator`, `class Config` → `ConfigDict`), while a single LLM call has no way to check its own output. This project tests one claim with real numbers: *a retrieval-grounded, test-driven agent loop migrates more code correctly than a single LLM call or a rule-based tool*, and then measures which part of the loop does the work.
 
 ## Architecture
 
@@ -65,36 +65,37 @@ The per-pattern queries were written by me with the guide in view, so the core-s
 | Rule-based (`bump-pydantic`) | `bump-pydantic` | 4/14 | 0/10 | 4/24 (16.7%) | 0 (rule) | $0.00000 | 1.07s |
 | Single-shot LLM (no RAG / no loop) | `anthropic/claude-haiku-5-5` | 14/14 | 6/10 | 20/24 (83.3%) | 1.00 | $0.00577 | 2.48s |
 | Agent (scan + BM25 RAG + pytest loop) | `anthropic/claude-haiku-5-5` | 14/14 | 10/10 | 24/24 (100.0%) | 1.29 | $0.02041 | 3.19s |
+| Ablation: agent without retrieval (scan + pytest loop) | `anthropic/claude-haiku-5-5` | 14/14 | 10/10 | 24/24 (100.0%) | 1.17 | $0.00720 | 2.85s |
 
 <details>
 <summary>Per-case breakdown across all 24 eval cases</summary>
 
-| Case | Set | Difficulty | `bump-pydantic` | `single_shot` | `agent` |
-|---|---|---|---|---|---|
-| `01_dict_json` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `02_parse_obj_raw` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `03_validator` | core | easy | PASS | PASS (r1) | PASS (r1) |
-| `04_validator_pre_always` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `05_root_validator` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `06_orm_mode_config` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `07_optional_implicit_default` | core | medium | PASS | PASS (r1) | PASS (r1) |
-| `08_field_regex_min_items` | core | easy | PASS | PASS (r1) | PASS (r1) |
-| `09_custom_root` | core | hard | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `10_parse_obj_as` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `11_copy_schema` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `12_extra_forbid_frozen` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `13_generic_model` | core | hard | PASS | PASS (r1) | PASS (r1) |
-| `14_forward_refs` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `15_union_smart_mode` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r2) |
-| `16_float_to_int` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) |
-| `17_number_to_str` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) |
-| `18_model_dict_equality` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `19_url_not_str` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) |
-| `20_validator_typeerror` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) |
-| `21_each_item_values` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `22_nested_subclass_dump` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r2) |
-| `23_dict_from_pairs` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r1) |
-| `24_service_module` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r2) |
+| Case | Set | Difficulty | `bump_pydantic` | `single_shot` | `agent` | `agent_no_rag` |
+|---|---|---|---|---|---|---|
+| `01_dict_json` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `02_parse_obj_raw` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `03_validator` | core | easy | PASS | PASS (r1) | PASS (r1) | PASS (r1) |
+| `04_validator_pre_always` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `05_root_validator` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `06_orm_mode_config` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `07_optional_implicit_default` | core | medium | PASS | PASS (r1) | PASS (r1) | PASS (r1) |
+| `08_field_regex_min_items` | core | easy | PASS | PASS (r1) | PASS (r1) | PASS (r1) |
+| `09_custom_root` | core | hard | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `10_parse_obj_as` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `11_copy_schema` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `12_extra_forbid_frozen` | core | medium | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `13_generic_model` | core | hard | PASS | PASS (r1) | PASS (r1) | PASS (r1) |
+| `14_forward_refs` | core | easy | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `15_union_smart_mode` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r2) | PASS (r1) |
+| `16_float_to_int` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) | PASS (r2) |
+| `17_number_to_str` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) | PASS (r2) |
+| `18_model_dict_equality` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `19_url_not_str` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) | PASS (r2) |
+| `20_validator_typeerror` | hard | hard | FAIL (failed) | FAIL (failed) | PASS (r2) | PASS (r2) |
+| `21_each_item_values` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `22_nested_subclass_dump` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r2) | PASS (r1) |
+| `23_dict_from_pairs` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r1) | PASS (r1) |
+| `24_service_module` | hard | hard | FAIL (failed) | PASS (r1) | PASS (r2) | PASS (r1) |
 
 </details>
 <!-- RESULTS_END -->
@@ -108,16 +109,18 @@ The per-pattern queries were written by me with the guide in view, so the core-s
 - **Core set:** both LLM modes pass 14/14 and `bump-pydantic` 4/14. `bump-pydantic` rewrites decorators and imports but leaves method calls (`.dict()`, `.parse_obj()`, `.copy()`, ...) and `__root__` unmigrated. Here the agent adds cost (about 3x) and no accuracy.
 - **Hard set:** the agent passes 10/10 and a single call 6/10. `bump-pydantic` passes 0/10. To check this was not luck, single-shot and agent were re-run three more times on the hard set (`results/repeats/hard_summary.json`):
 
-| Hard set (10 cases) | Run 1 | Run 2 | Run 3 | Run 4 | Cost per run |
-|---|---:|---:|---:|---:|---:|
-| Single LLM call | 6/10 | 5/10 | 5/10 | 6/10 | $0.0033–0.0037 |
-| Agent (scan + RAG + test loop) | 10/10 | 10/10 | 10/10 | 10/10 | $0.0126–0.0139 |
+| Hard set (10 cases) | Run 1 | Run 2 | Run 3 | Run 4 | Cost, 4 runs | Avg rounds |
+|---|---:|---:|---:|---:|---:|---:|
+| Single LLM call | 6/10 | 5/10 | 5/10 | 6/10 | $0.0141 | 1.00 |
+| Agent (scan + RAG + test loop) | 10/10 | 10/10 | 10/10 | 10/10 | $0.0533 | 1.68 |
+| Ablation: agent without retrieval (scan + test loop) | 10/10 | 10/10 | 10/10 | 10/10 | $0.0218 | 1.48 |
 
 - **Where the single call fails:** every run on `16_float_to_int`, `17_number_to_str`, `19_url_not_str` and `20_validator_typeerror`, and 2 of 4 runs on `22_nested_subclass_dump`. Its output looks like correct v2 code but changes behaviour.
-- **What made the agent pass is the test loop:** on those cases its first attempt also failed, and it passed in round 2 after reading the pytest failure. In round 2 the search over the failure text found the matching guide section for 16, 19 and 20 (floats to ints, Url types, `TypeError`), but not for 15, 17 or 22. So these runs show that the loop works; they do not show how much retrieval adds on top of it. An ablation (loop without retrieval) is the next experiment.
-- **Retrieval can also distract:** on `15_union_smart_mode` the single call passed in all 4 runs, while the agent's first attempt failed in all 4 and needed round 2.
-- **Audit:** I read the agent's final files for the hard cases (saved locally under `results/runs/`). The fixes are ordinary v2 code (`Field(union_mode="left_to_right")`, `BeforeValidator`, `coerce_numbers_to_str=True`, `str(url).rstrip("/")`, `SerializeAsAny`), with no test-specific special cases.
-- **Caveats:** one model (Claude Haiku 5.5); 24 hand-written cases (I wrote the hard set knowing v2's behaviour changes); the agent is graded by the same tests whose failures it reads, which is the point of a test-driven loop but means it had more information than the single call; 4 runs on the hard set and 1 on the core set.
+- **The test loop is what makes the difference, not retrieval.** On these cases the agent's first attempt also failed; it passed in round 2 after reading the pytest failure. The ablation keeps the scan and the loop but sends no guide text, and it also passed 10/10 in every run. Across all 24 cases it used 15,595 input tokens against 138,925 for the full agent, and cost $0.0072 against $0.0204.
+- **Retrieval sometimes hurt:** with guide excerpts, the first attempt failed on `15_union_smart_mode` in 4 of 4 runs and on `22_nested_subclass_dump` in 4 of 4. Without them, 15 passed first time in every run and 22 in 1 of 4. In round 2, the search over the failure text found the right section for 16, 19 and 20, but not for 15, 17 or 22.
+- **What this means:** with a current model and a library it already knows well (Pydantic is widely documented), grounding the patch in the guide costs 2.4–2.8x more and adds no accuracy. The part worth keeping is *run the tests and feed back the failure*. Retrieval could still pay off for a weaker model, or for a migration guide the model has never seen (an internal framework, say), but this eval does not test either case.
+- **Audit:** I read the agent's final files for the hard cases (saved locally under `results/runs/`). The fixes are ordinary v2 code (`Field(union_mode="left_to_right")`, `BeforeValidator`, `coerce_numbers_to_str=True`, `str(url).rstrip("/")`, `SerializeAsAny`), with no test-specific special cases. The same holds for the ablation's files.
+- **Caveats:** one model (Claude Haiku 5.5); 24 hand-written cases (I wrote the hard set knowing v2's behaviour changes); the agent is graded by the same tests whose failures it reads, which is the point of a test-driven loop but means it had more information than the single call; 4 runs per mode on the hard set and 1 on the core set.
 
 ## Quick start (Claude API via LiteLLM)
 
@@ -147,7 +150,8 @@ docker run --rm code-migration-agent
 - **Single-file scope:** `migrate_agent` currently migrates one Python file at a time; cross-module model imports are out of scope in v1.
 - **Static scan coverage:** The 22 regex/AST rules target common Pydantic v1 APIs; unusual custom metaclasses rely on the test-failure retry loop.
 - **Eval size:** 24 hand-written cases is enough to show a consistent gap on silent behaviour changes, not to estimate a precise pass rate for real codebases.
-- **Next:** ablation (test loop without retrieval) to measure what RAG adds; a second model; optionally a Streamlit demo.
+- **Retrieval did not help here:** see the ablation above. Retrieval stays on by default so the results match the system as designed; `--mode agent_no_rag` runs the cheaper variant.
+- **Next:** test retrieval where it should matter (a weaker model, or a guide the model has not seen); optionally a Streamlit demo.
 
 ## License
 

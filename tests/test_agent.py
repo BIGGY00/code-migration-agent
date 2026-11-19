@@ -88,3 +88,27 @@ def test_llm_error_is_recorded_not_raised():
     c = case("01_dict_json")
     result = migrate(c.before.read_text(), case=c, complete_fn=boom)
     assert result.status == "error" and "no key" in result.reason
+
+
+def test_no_retrieval_ablation_sends_no_guide_text():
+    c = case("16_float_to_int")
+    fake = FakeLLM(fenced(c.before.read_text()), fenced(c.reference.read_text()))
+    result = migrate(c.before.read_text(), case=c, complete_fn=fake, use_retrieval=False)
+
+    assert result.status == "passed" and [r.passed for r in result.rounds] == [False, True]
+    assert all(r.retrieved == [] for r in result.rounds)
+    first = fake.calls[0]
+    assert "excerpts" not in first[0]["content"] and "Migration guide excerpts" not in first[1]["content"]
+    assert "More migration guide excerpts" not in fake.calls[1][-1]["content"]
+
+
+def test_rag_prompt_layout_unchanged():
+    from migrate_agent import prompts
+    from migrate_agent.retrieval import BM25Retriever
+    from migrate_agent.scan import scan
+
+    src = case("01_dict_json").before.read_text()
+    hits = BM25Retriever().search("dict model_dump", k=1)
+    text = prompts.first_turn(src, scan(src), hits)
+    assert "`\n\n## Migration guide excerpts\n[" in text  # findings, blank line, excerpts
+    assert "\n\n## File to migrate\n```python\n" in text

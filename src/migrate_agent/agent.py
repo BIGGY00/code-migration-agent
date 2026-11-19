@@ -112,17 +112,24 @@ def migrate(
     retriever=None,
     complete_fn: Callable[..., llm.LLMResult] | None = None,
     log_path: Path | None = None,
+    use_retrieval: bool = True,
 ) -> MigrationResult:
+    """``use_retrieval=False`` is the ablation: same scan and test loop, no guide excerpts."""
     start = time.perf_counter()
-    retriever = retriever or BM25Retriever()
+    retriever = retriever or (BM25Retriever() if use_retrieval else None)
     complete_fn = complete_fn or llm.complete
     case_id = case.id if case else None
 
     findings = scan(source)
-    hits = multi_search(retriever, queries(findings), k=k) if findings else retriever.search(source, k=k)
+    if not use_retrieval:
+        hits = []
+    elif findings:
+        hits = multi_search(retriever, queries(findings), k=k)
+    else:
+        hits = retriever.search(source, k=k)
     seen = {h.chunk.id for h in hits}
     messages = [
-        {"role": "system", "content": prompts.SYSTEM},
+        {"role": "system", "content": prompts.system_prompt(with_guide=use_retrieval)},
         {"role": "user", "content": prompts.first_turn(source, findings, hits)},
     ]
 
@@ -170,7 +177,9 @@ def migrate(
             break
         # Next round: search the guide with the failure text and any v1 patterns still present.
         tail = _tail(test.output, PROMPT_TAIL_LINES)
-        round_hits = _new_hits(retriever, [tail, *queries(scan(candidate))], seen, EXTRA_CHUNKS_PER_FIX)
+        round_hits = (
+            _new_hits(retriever, [tail, *queries(scan(candidate))], seen, EXTRA_CHUNKS_PER_FIX) if use_retrieval else []
+        )
         seen.update(h.chunk.id for h in round_hits)
         messages += [
             {"role": "assistant", "content": resp.text},

@@ -24,6 +24,13 @@ Rules:
   square brackets.
 """
 
+# Same rules without the guide line, for the no-retrieval ablation.
+SYSTEM_NO_GUIDE = SYSTEM.split("- Base your changes")[0]
+
+
+def system_prompt(with_guide: bool = True) -> str:
+    return SYSTEM if with_guide else SYSTEM_NO_GUIDE
+
 
 def format_findings(findings: list[Finding]) -> str:
     if not findings:
@@ -36,13 +43,11 @@ def format_excerpts(hits: list[Hit]) -> str:
 
 
 def first_turn(source: str, findings: list[Finding], hits: list[Hit]) -> str:
+    excerpts = f"\n## Migration guide excerpts\n{format_excerpts(hits)}\n" if hits else ""
     return f"""\
 ## Pydantic v1 patterns found by a static scan
 {format_findings(findings)}
-
-## Migration guide excerpts
-{format_excerpts(hits)}
-
+{excerpts}
 ## File to migrate
 ```python
 {source}
