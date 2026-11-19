@@ -6,3 +6,6 @@ __pycache__/
 results/runs/
 data/index/
 .DS_Store
+
+# Local agent notes (personal context, not published)
+CLAUDE.md
