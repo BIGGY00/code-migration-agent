@@ -30,8 +30,9 @@ Goal: public repo with real results within ~1 week. Tick each box when its "Done
 - [x] Follow-up: 10 hard cases (15–24, silent v2 behaviour changes + one 80-line multi-pattern module), 24/24 valid — **2026-11-20, 24 cases: bump-pydantic 4/24, single_shot 20/24, agent 24/24. Hard set over 4 runs: single_shot 6, 5, 5, 6 /10; agent 10/10 every run** (`results/repeats/hard_summary.json`)
 - [x] Ablation `--mode agent_no_rag` (scan + test loop, no retrieval) — **2026-11-20: 24/24, $0.0072; hard set 10/10 in 4 of 4 runs ($0.0218 for 4 runs vs $0.0533 with retrieval). The gain comes from the test loop; retrieval added cost, not accuracy.**
 
-## Step 5 — Packaging, CI & Ship (Docker + CI + README ready; GitHub push pending Big's review)
+## Step 5 — Packaging, CI & Ship ✅
 - [x] `Dockerfile` & `.dockerignore` (slim Python 3.11 image, runs `validate_cases.py && pytest`)
 - [x] `.github/workflows/ci.yml` (`push`/`pull_request` offline tests + baseline; `workflow_dispatch` LLM eval with `ANTHROPIC_API_KEY` secret)
 - [x] `README.md`: problem, Mermaid architecture diagram, retrieval & baseline results, limitations, Claude API quick start
-- [ ] Done when: repo is public on github.com/BIGGY00, CI is green, README has all 3 mode results
+- [x] Done when: repo is public on github.com/BIGGY00, CI is green, README has all 3 mode results — **2026-11-20: https://github.com/BIGGY00/code-migration-agent, CI run 44591832949 green (test job 1m14s)**
+- [ ] To run the LLM eval from GitHub Actions: add the repo secret `ANTHROPIC_API_KEY` (Big), then run the CI workflow manually

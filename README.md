@@ -1,8 +1,10 @@
 # code-migration-agent
 
+[![CI](https://github.com/BIGGY00/code-migration-agent/actions/workflows/ci.yml/badge.svg)](https://github.com/BIGGY00/code-migration-agent/actions/workflows/ci.yml)
+
 An LLM agent that migrates Python code from **Pydantic v1 to v2**: it finds v1 patterns with a static scan, retrieves matching sections of the official migration guide (BM25 RAG), patches the code, runs `pytest` with deprecation warnings turned into errors, and feeds failures back into a bounded fix loop. An evaluation harness benchmarks the agent against a single-shot LLM call and the rule-based `bump-pydantic` baseline.
 
-> Status: **Steps 1–4 done, step 5 (publish) pending.** On 24 eval cases with `anthropic/claude-haiku-5-5` (2026-11-20): the agent passed 24/24, a single LLM call 20/24, and `bump-pydantic` 4/24. The gap is entirely on the 10 *hard* cases. An ablation shows the **test-driven fix loop** produces it: the agent without retrieval also passed 10/10 in 4 of 4 runs, at about 40% of the cost.
+> Status: **All five steps done.** On 24 eval cases with `anthropic/claude-haiku-5-5` (2026-11-20): the agent passed 24/24, a single LLM call 20/24, and `bump-pydantic` 4/24. The gap is entirely on the 10 *hard* cases. An ablation shows the **test-driven fix loop** produces it: the agent without retrieval also passed 10/10 in 4 of 4 runs, at about 40% of the cost.
 
 ## Why this exists
 
