@@ -1,0 +1,69 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      model:
+        description: "LiteLLM model id for LLM eval"
+        required: false
+        default: "anthropic/claude-haiku-5-5"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies (RAG + bump-pydantic baseline)
+        run: pip install -e ".[rag,baseline]"
+
+      - name: Validate 14 eval cases
+        run: python scripts/validate_cases.py
+
+      - name: Run unit tests (offline, no LLM calls)
+        run: pytest
+
+      - name: Verify retrieval and rule-based baseline
+        run: |
+          python scripts/eval_retrieval.py
+          python scripts/eval_retrieval.py --query scan
+          python scripts/run_eval.py --mode bump_pydantic
+          python scripts/make_report.py
+
+  llm-eval:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -e ".[rag,baseline]"
+
+      - name: Run single_shot + agent evals (Claude API)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          MIGRATE_AGENT_MODEL: ${{ github.event.inputs.model || 'anthropic/claude-haiku-5-5' }}
+        run: |
+          python scripts/smoke_llm.py
+          python scripts/run_eval.py --mode bump_pydantic
+          python scripts/run_eval.py --mode single_shot
+          python scripts/run_eval.py --mode agent
+          python scripts/make_report.py
+
+      - name: Upload eval results
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-results
+          path: results/

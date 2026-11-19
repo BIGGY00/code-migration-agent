@@ -1,0 +1,240 @@
+{
+  "generated_at": "2026-11-19T17:34:14+00:00",
+  "mode": "bump_pydantic",
+  "model": "bump-pydantic",
+  "total_cases": 14,
+  "passed_cases": 4,
+  "pass_rate": 0.2857,
+  "avg_rounds_to_pass": 0.0,
+  "avg_rounds_all": 0.0,
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "total_cost_usd": 0.0,
+  "avg_cost_usd": 0.0,
+  "avg_latency_s": 1.075,
+  "cases": [
+    {
+      "case_id": "01_dict_json",
+      "difficulty": "easy",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.088,
+      "remaining_patterns": [
+        "BaseModel.dict()@12",
+        "BaseModel.json()@16"
+      ],
+      "reason": "FAILED test_case.py::test_json_roundtrip - pydantic.warnings.PydanticDeprecat..."
+    },
+    {
+      "case_id": "02_parse_obj_raw",
+      "difficulty": "easy",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.089,
+      "remaining_patterns": [
+        "BaseModel.parse_obj()@10",
+        "BaseModel.parse_raw()/parse_file()@14"
+      ],
+      "reason": "FAILED test_case.py::test_invalid_raises - pydantic.warnings.PydanticDeprecat..."
+    },
+    {
+      "case_id": "03_validator",
+      "difficulty": "easy",
+      "status": "passed",
+      "passed": true,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.091,
+      "remaining_patterns": [],
+      "reason": null
+    },
+    {
+      "case_id": "04_validator_pre_always",
+      "difficulty": "medium",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.017,
+      "remaining_patterns": [
+        "@validator(pre=/always=)@11"
+      ],
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1..."
+    },
+    {
+      "case_id": "05_root_validator",
+      "difficulty": "medium",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.055,
+      "remaining_patterns": [
+        "@root_validator@9"
+      ],
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: Pydantic V1..."
+    },
+    {
+      "case_id": "06_orm_mode_config",
+      "difficulty": "medium",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.12,
+      "remaining_patterns": [
+        "BaseModel.from_orm()@11"
+      ],
+      "reason": "FAILED test_case.py::test_from_object_attributes - pydantic.warnings.Pydantic..."
+    },
+    {
+      "case_id": "07_optional_implicit_default",
+      "difficulty": "medium",
+      "status": "passed",
+      "passed": true,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 0.976,
+      "remaining_patterns": [],
+      "reason": null
+    },
+    {
+      "case_id": "08_field_regex_min_items",
+      "difficulty": "easy",
+      "status": "passed",
+      "passed": true,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.034,
+      "remaining_patterns": [],
+      "reason": null
+    },
+    {
+      "case_id": "09_custom_root",
+      "difficulty": "hard",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.059,
+      "remaining_patterns": [
+        "__root__ custom root type@6",
+        "BaseModel.parse_obj()@10",
+        "__root__ custom root type@14"
+      ],
+      "reason": "ERROR test_case.py - pydantic.errors.PydanticUserError: To define root models..."
+    },
+    {
+      "case_id": "10_parse_obj_as",
+      "difficulty": "medium",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.006,
+      "remaining_patterns": [
+        "parse_obj_as()@2",
+        "parse_obj_as()@11"
+      ],
+      "reason": "FAILED test_case.py::test_invalid_item - pydantic.warnings.PydanticDeprecated..."
+    },
+    {
+      "case_id": "11_copy_schema",
+      "difficulty": "easy",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.022,
+      "remaining_patterns": [
+        "BaseModel.copy()@10",
+        "BaseModel.schema()/schema_json()@14"
+      ],
+      "reason": "FAILED test_case.py::test_schema_fields - pydantic.warnings.PydanticDeprecate..."
+    },
+    {
+      "case_id": "12_extra_forbid_frozen",
+      "difficulty": "medium",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.272,
+      "remaining_patterns": [
+        "Config.allow_mutation@7",
+        "Config.allow_mutation@9"
+      ],
+      "reason": "FAILED test_case.py::test_is_immutable - Failed: DID NOT RAISE ValidationError"
+    },
+    {
+      "case_id": "13_generic_model",
+      "difficulty": "hard",
+      "status": "passed",
+      "passed": true,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.149,
+      "remaining_patterns": [],
+      "reason": null
+    },
+    {
+      "case_id": "14_forward_refs",
+      "difficulty": "easy",
+      "status": "failed",
+      "passed": false,
+      "rounds": 0,
+      "model": "bump-pydantic",
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0,
+      "latency_s": 1.071,
+      "remaining_patterns": [
+        "BaseModel.update_forward_refs()@10"
+      ],
+      "reason": "ERROR test_case.py - pydantic.warnings.PydanticDeprecatedSince20: The `update..."
+    }
+  ]
+}
